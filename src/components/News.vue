@@ -1,5 +1,5 @@
 <template lang="pug">
-  
+  div(class="news_page")
 </template>
 
 <script>
