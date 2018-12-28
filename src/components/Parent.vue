@@ -7,6 +7,7 @@
         article(id="article")
         div(class="parent_article_scrollbar")
           span
+        button(v-show="currentIndex !== -1 && clientWidth < 552" class="parent_return_list_button" v-on:click="returnChoose") 返回列表
       section(class="parent_menu_section")
         div(v-show="type === -1" class="parent_type")
           ul
@@ -22,9 +23,10 @@
                 section
                   p {{iter.Title}}
                   label {{iter.Count}}
+          button(v-if="type !== -1 && clientWidth < 552" class="parent_return_type_button" v-on:click="returnChoose") 返回列表
       section(class="parent_back")
         div(v-show="type !== -1" id="type-title" class="parent_type_title")
-        button(v-show="type !== -1" class="parent_return_button" v-on:click="returnChoose")
+        button(v-show="type !== -1 && clientWidth > 551" class="parent_return_button" v-on:click="returnChoose")
         router-link(tag="button" to="/" class="parent_exit_button")
 </template>
 
@@ -57,6 +59,9 @@ export default {
       } else {
         return this.tempArticles.slice(0).sort((a, b) => b.Count - a.Count)
       }
+    },
+    clientWidth: function () {
+      return document.body.clientWidth
     }
   },
   mounted: async function () {
@@ -93,8 +98,10 @@ export default {
       // update current index
       this.currentIndex = index
       if (document.body.clientWidth < 552) {
-        const target = document.querySelector('.parent_articles_list_section')
+        let target = document.querySelector('.parent_articles_list_section')
         target.style.setProperty('display', 'none')
+        target = document.querySelector('#article')
+        target.style.setProperty('display', 'block')
       }
     },
     returnChoose: function () {
@@ -212,6 +219,7 @@ export default {
       grid-template-areas: "select"
         "main";
       align-items: center;
+      justify-content: center;
       justify-items: center;
 
       width: 100vw;
@@ -222,7 +230,7 @@ export default {
     .parent_title {
       position: absolute;
       z-index: 20;
-      left: 10vw;
+      left: 18vw;
       top: 6vh;
 
       width:  64vw;
@@ -237,8 +245,15 @@ export default {
       grid-area: main;
       align-self: flex-end;
 
-      width: 92vw;
-      height: 80vh;
+      display: flex;
+      flex-wrap: wrap;
+      justify-items: center;
+      justify-content: center;
+      align-content: space-between;
+      align-items: space-between;
+
+      width: 100vw;
+      height: 75vh;
       background-image: url("../assets/parent/parent_background.svg");
       background-repeat: no-repeat;
       background-size: 34vw 30vw;
@@ -247,8 +262,10 @@ export default {
       overflow: hidden;
 
       article {
-        width: 92vw;
-        height: 80vh;
+        width: 100%;
+        height: 83%;
+
+        margin: 0 5vw;
 
         font-size: 1.5em;
         text-align: left;
@@ -259,36 +276,40 @@ export default {
           width: 0px;
           background: transparent;
         }
+        & /deep/ img {
+          max-width: 90vw;
+          width: 90vw;
+          object-fit: cover;
+        }
       }
 
       .parent_article_scrollbar {
-        position: fixed;
         display: none;
-        background-color: #e3dfc1;
-        border-radius: 5px;
-        color: #942323;
-        font-size: 1.5em;
-        line-height: 1.2em;
-        top: 26%;
-        left: 60%;
-        z-index: 510;
-        width: 10px;
-        height: 66vh;
-        margin-left: 20px;
-        transform: skewX(-5deg);
+      }
 
-        span {
-          position: absolute;
-          left: -50px;
-          width: 70px;
-          height: 70px;
-          background: url("../assets/parent/scrollbarThumb.svg");
-          background-repeat: no-repeat;
-          background-position: 50% 40%;
-          background-size: 60%;
-          transform: skewX(7.5deg);
-          cursor: pointer;
-          z-index: 510;
+      .parent_return_list_button {
+        width: 90%;
+        height: 12vw;
+        background-color: #942323;
+
+        margin: 5vw;
+
+        color: white;
+        font-size: 5vw;
+
+        outline: none;
+        border: none;
+        border-radius: 2vw;
+
+        cursor: pointer;
+
+        transition: filter .3s ease;
+
+        &:hover {
+          filter: brightness(130%);
+        }
+        &:active {
+          filter: brightness(80%);
         }
       }
     }
@@ -409,15 +430,21 @@ export default {
         }
 
         .parent_articles_list {
+          display: flex;
+          flex-wrap: wrap;
+          align-content: space-between;
+
+          height: 55vh;
           ul {
+            width: 10;
+
             list-style-type: none;
             margin: 0;
-            margin-top: 6vw;
             padding: 0;
 
             li {
               margin: 3vw 8vw;
-              padding: 0;
+              padding: 0 2vw;
 
               font-size: 6vw;
               color: #942323;
@@ -432,7 +459,7 @@ export default {
 
               &:hover {
                 filter: brightness(150%);
-                border-left-width: 6px;
+                border-left-width: 1vw;
               }
               &:active {
                 filter: brightness(70%);
@@ -461,6 +488,33 @@ export default {
             }
           }
         }
+
+        .parent_return_type_button {
+          width: 90%;
+          height: 12vw;
+          background-color: #942323;
+
+          margin: 5vw;
+
+          color: white;
+          font-size: 5vw;
+
+          outline: none;
+          border: none;
+          border-radius: 2vw;
+
+          cursor: pointer;
+
+          transition: filter .3s ease;
+
+          &:hover {
+            filter: brightness(130%);
+          }
+          &:active {
+            filter: brightness(80%);
+          }
+        }
+
       }
 
     }
@@ -484,47 +538,18 @@ export default {
         display: none;
       }
 
-      .parent_return_button {
-        grid-area: type-back;
-
-        width: 8vw;
-        height: 8vw;
-        background-color: transparent;
-        background-image: url("../assets/return.svg");
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        background-position: 50% 50%;
-        margin: 2vw 0vw;
-        margin-right: 3vw;
-
-        outline: none;
-        border: none;
-        filter: brightness(120%);
-
-        cursor: pointer;
-
-        transition: filter .3s ease;
-
-        &:hover {
-          filter: brightness(130%);
-        }
-        &:active {
-          filter: brightness(80%);
-        }
-      }
-
       .parent_exit_button {
         grid-area: exit;
 
-        width: 8vw;
-        height: 8vw;
+        width: 7vw;
+        height: 7vw;
         background-color: transparent;
         background-image: url("../assets/exit.svg");
         background-repeat: no-repeat;
         background-size: 100% 100%;
         background-position: 50% 50%;
         margin: 6vw 0vw;
-        margin-right: 3vw;
+        margin-right: 2vw;
 
         outline: none;
         border: none;
@@ -600,14 +625,13 @@ export default {
 
     .parent_article_section {
       grid-area: article;
-      align-self: flex-end;
 
       width: 45vw;
       height: 66vh;
       background-image: url("../assets/parent/parent_background.svg");
       background-repeat: no-repeat;
       background-size: 34vw 30vw;
-      background-position: 50% 50%;
+      background-position: 50% 57%;
 
       overflow: hidden;
 
@@ -627,7 +651,34 @@ export default {
       }
 
       .parent_article_scrollbar {
-        display: none !important;
+        position: fixed;
+        display: none;
+        background-color: #e3dfc1;
+        border-radius: 5px;
+        color: #942323;
+        font-size: 1.5em;
+        line-height: 1.2em;
+        top: 26%;
+        left: 60%;
+        z-index: 510;
+        width: 10px;
+        height: 66vh;
+        margin-left: 20px;
+        transform: skewX(-5deg);
+
+        span {
+          position: absolute;
+          left: -50px;
+          width: 70px;
+          height: 70px;
+          background: url("../assets/parent/scrollbarThumb.svg");
+          background-repeat: no-repeat;
+          background-position: 50% 40%;
+          background-size: 60%;
+          transform: skewX(7.5deg);
+          cursor: pointer;
+          z-index: 510;
+        }
       }
     }
 
@@ -753,7 +804,7 @@ export default {
 
               &:hover {
                 filter: brightness(150%);
-                border-left-width: 6px;
+                border-left-width: .5vw;
               }
               &:active {
                 filter: brightness(70%);
@@ -865,7 +916,7 @@ export default {
     }
 
     .activeArticle {
-      border-left: 6px solid #942323 !important;
+      border-left: .5vw solid #942323 !important;
     }
   }
 
