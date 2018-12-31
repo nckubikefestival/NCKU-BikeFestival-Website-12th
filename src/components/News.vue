@@ -4,8 +4,11 @@
     div(class="news_title")
     div(class="news_layout")
       section(class="news_list_section")
-        ul
-          li(v-for="(iter, index) of news" v-bind:key="iter.Title") {{iter.Title}}
+        ul(id="list")
+          li(v-for="(iter, index) of news" v-bind:key="iter.Title" v-on:click="currentIndex = currentIndex == -1 ? index : (currentIndex == index ? -1 : index)")
+            p {{iter.Title}}
+            time {{parseTimestamp(iter.Timestamp)}}
+            div(v-show-slide:300:example-easing="currentIndex === index" v-html="iter.Content")
       section(class="news_counter_section")
         div(class="news_decoration_top")
         div(class="news_counter")
@@ -22,17 +25,28 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data: function () {
     return {
-      news: [{ Title: 'Test', Content: 'test content' }, { Title: 'Test', Content: 'test content' }]
+      news: [],
+      currentIndex: -1
     }
   },
-  mounted: function () {
+  mounted: async function () {
     setInterval(this.timeCounter, 1000)
     this.numberDom1 = document.querySelector('#news_number_1')
     this.numberDom2 = document.querySelector('#news_number_2')
     this.timeCounter()
+    // get news from database
+    try {
+      // fetch the articles from database
+      const url = `https://us-central1-ncku-bikefestival-12th.cloudfunctions.net/getNewsArticles`
+      const result = await axios.get(url)
+      this.news = result.data.sort((a, b) => b.Timestamp._seconds - a.Timestamp._seconds)
+    } catch (error) {
+      console.log(error)
+    }
   },
   methods: {
     timeCounter: function () {
@@ -47,6 +61,11 @@ export default {
         number = require(`../assets/number_${Math.floor(day % 10)}.svg`)
         this.numberDom2.style.setProperty('background-image', `url(${number})`)
       }
+    },
+    parseTimestamp: function (timestamp) {
+      const time = new Date(timestamp._seconds * 1000)
+      const str = `${time.getFullYear()}/${time.getMonth() + 1}/${time.getDate()}`
+      return str
     }
   }
 }
@@ -78,17 +97,14 @@ export default {
       align-items: center;
       justify-content: center;
       position: relative;
-      height: 100vh;
+      height: auto;
       width: 100vw;
       margin: 0;
       padding: 0;
+      background: #dad6b2;
     }
     .news_background {
-      position: absolute;
-      z-index: -1;
-      background: #dad6b2;
-      height: 100vh;
-      width: 100vw;
+      display: none;
     }
     .news_title {
       position: absolute;
@@ -109,7 +125,7 @@ export default {
       grid-template-rows: 1.2fr 3fr .5fr;
       grid-template-areas: "select"
         "list"
-        "return";
+        "list";
       justify-content: center;
       justify-items: center;
       align-items: center;
@@ -124,7 +140,23 @@ export default {
 
         width: 100%;
         height: 100%;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
 
+        &::-webkit-scrollbar {
+          width: 10px;
+          border-radius: 5px;
+        }
+        &::-webkit-scrollbar-track {
+          background: #f1f1f1;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: #888;
+          border-radius: 5px;
+        }
+        &::-webkit-scrollbar-thumb:hover {
+          background: #555;
+        }
         ul {
           list-style-type: none;
 
@@ -132,17 +164,13 @@ export default {
           padding: 0;
           box-sizing: border-box;
 
-          height: 100%;
-
           li {
             width: 100%;
-            height: 7vh;
             line-height: 7vh;
 
             background-color: #942323;
 
             margin: 0;
-            margin-top: 4vw;
             padding: 0vw 4vw;
             border-radius: 2vh;
             box-sizing: border-box;
@@ -159,6 +187,30 @@ export default {
             &:active {
               filter: brightness(80%);
             }
+            time {
+              float: right;
+            }
+            p {
+              display: inline-block;
+              margin: 0;
+            }
+
+            div {
+              background-color: transparent;
+
+              line-height: 2vh;
+              text-align: left;
+              font-size: 2vh;
+              color: white;
+
+              transform-origin: top;
+              transition: transform .3s ease;
+
+            }
+
+          }
+          li+li {
+            margin-top: 4vw;
           }
         }
       }
@@ -251,7 +303,7 @@ export default {
     .news_layout {
       display: grid;
       grid-template-columns: 1.5fr 1fr;
-      grid-template-rows: 1fr 3fr 1fr;
+      grid-template-rows: 20vh 60vh 20vh;
       grid-template-areas: "empty select"
         "list time"
         ". .";
@@ -264,46 +316,89 @@ export default {
 
       .news_list_section {
         grid-area: list;
-        justify-self: flex-start;
+        justify-self: center;
         align-self: flex-start;
 
-        width: 100%;
-        height: 100%;
+        display: flex;
+        justify-content: center;
 
+        width: 90%;
+        height: 100%;
+        margin-top: 5vh;
+        max-height: 60vh;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+          width: 10px;
+          border-radius: 5px;
+        }
+        &::-webkit-scrollbar-track {
+          background: #f1f1f1;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: #888;
+          border-radius: 5px;
+        }
+        &::-webkit-scrollbar-thumb:hover {
+          background: #555;
+        }
         ul {
           list-style-type: none;
 
-          margin: 4vw 10vw;
-          padding: 0;
+          padding: 0 3vw 0 8vw;
 
-          width: 70%;
-          height: 100%;
+          width: 100%;
 
           li {
             width: 100%;
-            height: 6vh;
-            line-height: 6vh;
 
             background-color: #942323;
 
             margin: 0;
-            margin-top: 2vw;
             padding: 0vw 2vw;
             border-radius: 2vh;
             box-sizing: border-box;
 
+            line-height: 6vh;
             font-size: 3vh;
             color: white;
             text-align: left;
 
             cursor: pointer;
             transition: filter .3s ease;
+            overflow-y: hidden;
+
             &:hover {
               filter: brightness(120%);
             }
             &:active {
               filter: brightness(80%);
             }
+
+            time {
+              float: right;
+              font-size: 2.5vh;
+            }
+            p {
+              display: inline-block;
+              margin: 0;
+            }
+
+            div {
+              background-color: transparent;
+
+              line-height: 2vh;
+              text-align: left;
+              font-size: 2vh;
+              color: white;
+
+              transform-origin: top;
+              transition: transform .3s ease;
+
+            }
+          }
+          li+li {
+            margin-top: 2vw;
           }
         }
       }

@@ -55,7 +55,7 @@ export default {
   computed: {
     rearrangeArticles: function () {
       if (this.arrangeType === 0) {
-        return this.tempArticles.slice(0).sort((a, b) => b.Timestamp.seconds - a.Timestamp.seconds)
+        return this.tempArticles.slice(0).sort((a, b) => b.Timestamp._seconds - a.Timestamp._seconds)
       } else {
         return this.tempArticles.slice(0).sort((a, b) => b.Count - a.Count)
       }
@@ -670,7 +670,7 @@ export default {
           left: -50px;
           width: 70px;
           height: 70px;
-          background: url("../assets/parent/scrollbarThumb.svg");
+          background: url("../assets/scrollbarThumb.svg");
           background-repeat: no-repeat;
           background-position: 50% 40%;
           background-size: 60%;

@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Intro from '@/components/Intro'
 import Parent from '@/components/Parent'
 import News from '@/components/News'
+import Department from '@/components/Department'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/news',
       name: 'News',
       component: News
+    },
+    {
+      path: '/department',
+      name: 'department',
+      component: Department
     }
   ]
 })
