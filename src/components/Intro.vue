@@ -69,6 +69,22 @@ export default {
       transform: rotate(360deg);
     }
   }
+
+  #intro_dot_1 {
+    animation: dot-loading 1.2s ease-in-out;
+    animation-iteration-count: infinite;
+  }
+  #intro_dot_2 {
+    animation: dot-loading 1.2s ease-in-out;
+    animation-delay: 0.4s;
+    animation-iteration-count: infinite;
+  }
+  #intro_dot_3 {
+    animation: dot-loading 1.2s ease-in-out;
+    animation-delay: 0.8s;
+    animation-iteration-count: infinite;
+  }
+
   /*
     mobile layout css
   */
@@ -83,6 +99,7 @@ export default {
       margin: 0;
       padding: 0;
     }
+
     .intro_background {
       position: absolute;
       z-index: -1;
@@ -261,7 +278,7 @@ export default {
       grid-template-columns: 1.2fr 1fr;
       grid-template-rows: 1fr 1fr;
       grid-template-areas: "number dot";
-      background-image: url("../assets/intro/countdown.svg");
+      background-image: url("../assets/countdown.svg");
       background-repeat: no-repeat;
       background-position: right bottom;
       background-size: 85% 68%;
@@ -298,7 +315,7 @@ export default {
           height: 1vw;
           margin: 0.8vw;
           margin-bottom: 5vw;
-          background-image: url("../assets/intro/dot.svg");
+          background-image: url("../assets/dot.svg");
           background-repeat: no-repeat;
           background-size: 100% 100%;
         }

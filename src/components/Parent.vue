@@ -531,8 +531,8 @@ export default {
       justify-items: flex-end;
       justify-content: flex-end;
 
-      width: 90%;
-      height: 90%;
+      width: 100%;
+      height: 100%;
 
       .parent_type_title {
         display: none;
@@ -548,8 +548,7 @@ export default {
         background-repeat: no-repeat;
         background-size: 100% 100%;
         background-position: 50% 50%;
-        margin: 6vw 0vw;
-        margin-right: 2vw;
+        margin: 7vw 7vw;
 
         outline: none;
         border: none;

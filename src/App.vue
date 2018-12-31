@@ -46,6 +46,15 @@ export default {
     }
   }
 
+  @keyframes dot-loading {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
   body {
     margin: 0;
     padding: 0;
