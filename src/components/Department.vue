@@ -358,6 +358,624 @@ export default {
   /*
     computer layout css
   */
+  @media only screen and (max-width: 551px) {
+    .dept_page {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      justify-items: flex-start;
+      position: relative;
+      height: 100vh;
+      width: 100vw;
+      background: #dad6b2;
+      margin: 0;
+      padding: 0;
+    }
+    .dept_title {
+      position: absolute;
+      z-index: 20;
+      left: 5vw;
+      top: 0vh;
+      display: inline-block;
+      background: #942323;
+      border-radius: 50px;
+      text-align: center;
+      color: white;
+      padding: 15px 40px 15px 40px;
+      font-size: 5vw;
+      font-weight: 500;
+      letter-spacing: 1px;
+      line-height: 24px;
+      transform: rotateZ(-3deg);
+      border: 1px solid white;
+    }
+
+    .dept_decoration_top {
+      display: none;
+    }
+
+    .dept_decoration_bottom {
+      display: none;
+    }
+
+    .dept_return_button {
+      position: absolute;
+      right: 7vw;
+      top: 7vw;
+
+      width: 7.5vw;
+      height: 7.5vw;
+      background-color: transparent;
+      background-image: url("../assets/exit.svg");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-position: 50% 50%;
+
+      outline: none;
+      border: none;
+      filter: brightness(120%);
+
+      cursor: pointer;
+
+      transition: filter .3s ease;
+
+      &:hover {
+        filter: brightness(130%);
+      }
+      &:active {
+        filter: brightness(80%);
+      }
+    }
+
+    .external_circle {
+      display: none;
+    }
+
+    .dept_layout {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .dept_chain_section {
+
+      width: 100%;
+      height: 100%;
+
+      .dept_chain_small {
+        display: none;
+      }
+
+      .dept_chain_large {
+        position: absolute;
+        left: -100vw;
+        top: -10vh;
+
+        width: 120vh;
+        height: 120vh;
+
+        background-image: url("../assets/dept/large_chain.svg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-position: 50% 50%;
+
+        pointer-events: none;
+      }
+      svg {
+        position: absolute;
+
+        top: 0;
+        bottom: 0;
+        margin: auto 0;
+        left: -145vw;
+
+        transform: scale(6);
+        pointer-events: none;
+      }
+    }
+
+    .dept_college {
+      position: absolute;
+      left: 0vw;
+      top: 45vh;
+      box-sizing: border-box;
+
+      will-change: opacity, transform;
+      transform: scale(2);
+      p {
+        position: absolute;
+        left: 0;
+        top: 0;
+        max-width: 13vw;
+        width: 7.5vw;
+        height: auto;
+        text-align: center;
+        vertical-align: bottom;
+        background-color: #eeefef;
+        color: black;
+        padding: 5px;
+        font-size: 2.5vw;
+        font-weight: 500;
+        line-height: 2.5vw;
+        cursor: pointer;
+      }
+      p:hover {
+        z-index: 999;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+      }
+      &.rotate-design > p:nth-child(1) {
+        animation: rotate-30 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-design > p:nth-child(2) {
+        animation: rotate-90 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-design > p:nth-child(3) {
+        animation: rotate-150 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+
+      &.rotate-design-disappear > p:nth-child(1) {
+        animation: rotate-30-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-design-disappear > p:nth-child(2) {
+        animation: rotate-90-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-design-disappear > p:nth-child(3) {
+        animation: rotate-150-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+
+      &.rotate-social > p:nth-child(1) {
+        animation: rotate-23 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-social > p:nth-child(2) {
+        animation: rotate-68 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-social > p:nth-child(3) {
+        animation: rotate-113 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-social > p:nth-child(4) {
+        animation: rotate-158 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+
+      &.rotate-social-disappear > p:nth-child(1) {
+        animation: rotate-23-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-social-disappear > p:nth-child(2) {
+        animation: rotate-68-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-social-disappear > p:nth-child(3) {
+        animation: rotate-113-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-social-disappear > p:nth-child(4) {
+        animation: rotate-158-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+
+      &.rotate-undeclear > p {
+        animation: rotate-90 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+
+      &.rotate-undeclear-disappear > p {
+        animation: rotate-90-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+
+      &.rotate-engineer-1 > p:nth-child(1) {
+        animation: rotate-12 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-1 > p:nth-child(2) {
+        animation: rotate-37 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-1 > p:nth-child(3) {
+        animation: rotate-63 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-1 > p:nth-child(4) {
+        animation: rotate-90 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-1 > p:nth-child(5) {
+        animation: rotate-117 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-1 > p:nth-child(6) {
+        animation: rotate-143 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-1 > p:nth-child(7) {
+        animation: rotate-168 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-2 > p:nth-child(1) {
+        animation: rotate-15 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-2 > p:nth-child(2) {
+        animation: rotate-45 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-2 > p:nth-child(3) {
+        animation: rotate-75 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-2 > p:nth-child(4) {
+        animation: rotate-105 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-2 > p:nth-child(5) {
+        animation: rotate-135 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-2 > p:nth-child(6) {
+        animation: rotate-165 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+
+      &.rotate-engineer-1-disappear > p:nth-child(1) {
+        animation: rotate-12-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-1-disappear > p:nth-child(2) {
+        animation: rotate-37-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-1-disappear > p:nth-child(3) {
+        animation: rotate-63-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-1-disappear > p:nth-child(4) {
+        animation: rotate-90-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-1-disappear > p:nth-child(5) {
+        animation: rotate-117-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-1-disappear > p:nth-child(6) {
+        animation: rotate-143-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-1-disappear > p:nth-child(7) {
+        animation: rotate-168-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-2-disappear > p:nth-child(1) {
+        animation: rotate-15-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-2-disappear > p:nth-child(2) {
+        animation: rotate-45-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-2-disappear > p:nth-child(3) {
+        animation: rotate-75-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-2-disappear > p:nth-child(4) {
+        animation: rotate-105-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-2-disappear > p:nth-child(5) {
+        animation: rotate-135-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-engineer-2-disappear > p:nth-child(6) {
+        animation: rotate-165-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+
+      &.rotate-science > p:nth-child(1) {
+        animation: rotate-18 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-science > p:nth-child(2) {
+        animation: rotate-54 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-science > p:nth-child(3) {
+        animation: rotate-90 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-science > p:nth-child(4) {
+        animation: rotate-126 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-science > p:nth-child(5) {
+        animation: rotate-162 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+
+      &.rotate-science-disappear > p:nth-child(1) {
+        animation: rotate-18-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-science-disappear > p:nth-child(2) {
+        animation: rotate-54-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-science-disappear > p:nth-child(3) {
+        animation: rotate-90-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-science-disappear > p:nth-child(4) {
+        animation: rotate-126-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-science-disappear > p:nth-child(5) {
+        animation: rotate-162-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+
+      &.rotate-humanity > p:nth-child(1) {
+        animation: rotate-23 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-humanity > p:nth-child(2) {
+        animation: rotate-68 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-humanity > p:nth-child(3) {
+        animation: rotate-113 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-humanity > p:nth-child(4) {
+        animation: rotate-158 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+
+      &.rotate-humanity-disappear > p:nth-child(1) {
+        animation: rotate-23-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-humanity-disappear > p:nth-child(2) {
+        animation: rotate-68-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-humanity-disappear > p:nth-child(3) {
+        animation: rotate-113-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-humanity-disappear > p:nth-child(4) {
+        animation: rotate-158-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+
+      &.rotate-medicine > p:nth-child(1) {
+        animation: rotate-15 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-medicine > p:nth-child(2) {
+        animation: rotate-45 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-medicine > p:nth-child(3) {
+        animation: rotate-75 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-medicine > p:nth-child(4) {
+        animation: rotate-105 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-medicine > p:nth-child(5) {
+        animation: rotate-135 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-medicine > p:nth-child(6) {
+        animation: rotate-165 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+
+      &.rotate-medicine-disappear > p:nth-child(1) {
+        animation: rotate-15-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-medicine-disappear > p:nth-child(2) {
+        animation: rotate-45-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-medicine-disappear > p:nth-child(3) {
+        animation: rotate-75-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-medicine-disappear > p:nth-child(4) {
+        animation: rotate-105-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-medicine-disappear > p:nth-child(5) {
+        animation: rotate-135-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-medicine-disappear > p:nth-child(6) {
+        animation: rotate-165-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+
+      &.rotate-management > p:nth-child(1) {
+        animation: rotate-18 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-management > p:nth-child(2) {
+        animation: rotate-54 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-management > p:nth-child(3) {
+        animation: rotate-90 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-management > p:nth-child(4) {
+        animation: rotate-126 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-management > p:nth-child(5) {
+        animation: rotate-162 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+
+      &.rotate-management-disappear > p:nth-child(1) {
+        animation: rotate-18-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-management-disappear > p:nth-child(2) {
+        animation: rotate-54-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-management-disappear > p:nth-child(3) {
+        animation: rotate-90-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-management-disappear > p:nth-child(4) {
+        animation: rotate-126-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-management-disappear > p:nth-child(5) {
+        animation: rotate-162-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+
+      &.rotate-computer > p:nth-child(1) {
+        animation: rotate-45 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-computer > p:nth-child(2) {
+        animation: rotate-135 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-computer-disappear > p:nth-child(1) {
+        animation: rotate-45-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-computer-disappear > p:nth-child(2) {
+        animation: rotate-135-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+
+      &.rotate-biological > p:nth-child(1) {
+        animation: rotate-45 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-biological > p:nth-child(2) {
+        animation: rotate-135 .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+
+      &.rotate-biological-disappear > p:nth-child(1) {
+        animation: rotate-45-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+      &.rotate-biological-disappear > p:nth-child(2) {
+        animation: rotate-135-disappear .5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+
+    }
+
+    .dept_list_section {
+      position: absolute;
+      left: 30vw;
+      top: 13vh;
+
+      max-width: 20vh;
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          margin: 0;
+          padding: 0;
+
+          transition-property: font-size, text-align, background-color, padding;
+          transition-duration: .3s;
+          transition-timing-function: ease;
+        }
+
+        li[data-key="design"]  {
+          transform: translateX(0px) skewX(-5deg);
+        }
+        li[data-key="social"]  {
+          transform: translateX(48px) skewX(-5deg);
+        }
+        li[data-key="undeclear"]  {
+          transform: translateX(70px) skewX(-5deg);
+        }
+        li[data-key="engineer-1"]  {
+          transform: translateX(90px) skewX(-5deg);
+        }
+        li[data-key="engineer-2"]  {
+          transform: translateX(90px) skewX(-5deg);
+        }
+        li[data-key="science"]  {
+          transform: translateX(100px) skewX(-5deg);
+        }
+        li[data-key="humanity"]  {
+          transform: translateX(100px) skewX(-5deg);
+        }
+        li[data-key="medicine"]  {
+          transform: translateX(90px) skewX(-5deg);
+        }
+        li[data-key="management"]  {
+          transform: translateX(70px) skewX(-5deg);
+        }
+        li[data-key="computer"]  {
+          transform: translateX(48px) skewX(-5deg);
+        }
+        li[data-key="biological"]  {
+          transform: translateX(0px) skewX(-5deg);
+        }
+      }
+
+      .dept_class_item {
+        margin: 2vh;
+
+        font-size: 2.6vh;
+
+        p {
+          width: 100%;
+
+          margin: 0;
+          padding: 0;
+
+          text-align: right;
+
+          color: #942323;
+          font-weight: 500;
+          cursor: pointer;
+          transform: skewX(5deg);
+        }
+        &.active {
+            background-color: #eeefef;
+            padding: 10px;
+            font-size: 3vh;
+            font-weight: 500;
+          }
+        &:hover {
+          background-color: #eeefef;
+          padding: 10px;
+          font-size: 3vh;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  /*
+    computer layout css
+  */
   @media only screen and (min-width: 552px) {
     .dept_page {
       display: flex;
