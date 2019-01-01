@@ -764,7 +764,7 @@ export default {
             border-radius: .8vw;
 
             color: white;
-            font-size: 1.3vw;
+            font-size: 1.1vw;
 
             cursor: pointer;
 

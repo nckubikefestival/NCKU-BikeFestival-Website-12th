@@ -212,6 +212,7 @@ export default {
           p {
             display: inline;
             font-size: 6vw;
+            line-height: 10vw;
             margin-left: 10vw;
             color: #942323;
           }
@@ -434,7 +435,7 @@ export default {
             filter: brightness(50%);
           }
           p {
-            margin-top: 7.5vw;
+            margin-top: 8vw;
             font-size: 1.3em;
             color: #942323;
           }

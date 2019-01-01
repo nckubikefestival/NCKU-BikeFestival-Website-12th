@@ -8,7 +8,7 @@ import VueAxios from 'vue-axios'
 import VShowSlide from 'v-show-slide'
 import VueLoading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.css'
-import 'normalize.css'
+import 'reset-css'
 
 Vue.config.productionTip = false
 Vue.prototype.axios = axios

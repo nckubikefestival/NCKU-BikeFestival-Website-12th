@@ -41,7 +41,7 @@ export default {
         humanity: ['中文', '外文', '歷史', '臺文'],
         medicine: ['醫學', '藥學', '護理', '物治', '職治', '醫技'],
         management: ['會計', '統計', '企管', '交管', '工資管'],
-        computer: ['電機', '資訊'],
+        computer: ['資訊', '電機'],
         biological: ['生科', '生技']
       },
       currentIndex: -1,
