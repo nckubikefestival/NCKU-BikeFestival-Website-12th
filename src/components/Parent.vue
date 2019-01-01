@@ -50,7 +50,8 @@ export default {
         future: []
       },
       tempArticles: [],
-      loader: null
+      loader: null,
+      currentCount: []
     }
   },
   computed: {
@@ -88,13 +89,21 @@ export default {
       // set tempArticles
       this.tempArticles = this.allArticles[this.typeEText[index]]
     },
-    clickArticle: function (index) {
+    clickArticle: async function (index) {
       const oldNode = document.querySelector('#article')
       // clone a new node from old node.
       const newNode = oldNode.cloneNode(false)
       newNode.innerHTML = this.rearrangeArticles[index].Content
       // replace the old node with new node.
       oldNode.parentNode.replaceChild(newNode, oldNode)
+      // add Count of the article
+      console.log(this.rearrangeArticles[index])
+      if (!this.currentCount.find(target => target === this.rearrangeArticles[index].Id)) {
+        const url = `https://us-central1-ncku-bikefestival-12th.cloudfunctions.net/addArticleCount?id=${this.rearrangeArticles[index].Id}`
+        await axios.get(url)
+        this.currentCount.push(this.rearrangeArticles[index].Id)
+        this.rearrangeArticles[index].Count = this.rearrangeArticles[index].Count + 1
+      }
       // refresh scrollbar
       this.scrollbarRefresh()
       // update current index
@@ -127,6 +136,7 @@ export default {
       // hide scrollbar
       const scrollbar = document.querySelector('.parent_article_scrollbar')
       scrollbar.style.setProperty('display', 'none')
+      this.currentIndex = -1
     },
     arrangeList: function (value) {
       this.arrangeType = value
@@ -611,10 +621,10 @@ export default {
     .parent_layout {
       display: grid;
       grid-template-columns: 2fr 1fr;
-      grid-template-rows: 1fr 4fr .5fr;
+      grid-template-rows: 1fr 4fr 1fr;
       grid-template-areas: "title select"
         "article menu"
-        "empty empty";
+        "article .";
       align-items: center;
       justify-items: center;
 
@@ -653,7 +663,8 @@ export default {
         width: 45vw;
         height: 66vh;
 
-        font-size: 1.5em;
+        font-size: 1.2vw;
+        line-height: 130%;
         text-align: left;
         color: #942323;
         overflow-y: scroll;
@@ -818,7 +829,7 @@ export default {
 
               &:hover {
                 filter: brightness(150%);
-                border-left-width: .5vw;
+                border-left-width: .4vw;
               }
               &:active {
                 filter: brightness(70%);
@@ -930,7 +941,7 @@ export default {
     }
 
     .activeArticle {
-      border-left: .5vw solid #942323 !important;
+      border-left: .4vw solid #942323 !important;
     }
   }
 

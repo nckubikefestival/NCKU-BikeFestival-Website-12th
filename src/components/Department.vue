@@ -375,7 +375,7 @@ export default {
       position: absolute;
       z-index: 20;
       left: 5vw;
-      top: 0vh;
+      top: 5vh;
       display: inline-block;
       background: #942323;
       border-radius: 50px;
@@ -386,7 +386,7 @@ export default {
       font-weight: 500;
       letter-spacing: 1px;
       line-height: 24px;
-      transform: rotateZ(-3deg);
+      transform: rotateZ(-5deg);
       border: 1px solid white;
     }
 
@@ -476,7 +476,7 @@ export default {
     .dept_college {
       position: absolute;
       left: 0vw;
-      top: 45vh;
+      top: 47vh;
       box-sizing: border-box;
 
       will-change: opacity, transform;
@@ -885,10 +885,10 @@ export default {
 
     .dept_list_section {
       position: absolute;
-      left: 30vw;
-      top: 13vh;
+      left: 25vw;
+      top: 18vh;
 
-      max-width: 20vh;
+      max-width: 25vh;
 
       ul {
         list-style-type: none;
@@ -905,19 +905,19 @@ export default {
         }
 
         li[data-key="design"]  {
-          transform: translateX(0px) skewX(-5deg);
+          transform: translateX(34px) skewX(-5deg);
         }
         li[data-key="social"]  {
-          transform: translateX(48px) skewX(-5deg);
+          transform: translateX(56px) skewX(-5deg);
         }
         li[data-key="undeclear"]  {
-          transform: translateX(70px) skewX(-5deg);
+          transform: translateX(72px) skewX(-5deg);
         }
         li[data-key="engineer-1"]  {
-          transform: translateX(90px) skewX(-5deg);
+          transform: translateX(93px) skewX(-5deg);
         }
         li[data-key="engineer-2"]  {
-          transform: translateX(90px) skewX(-5deg);
+          transform: translateX(100px) skewX(-5deg);
         }
         li[data-key="science"]  {
           transform: translateX(100px) skewX(-5deg);
@@ -932,15 +932,15 @@ export default {
           transform: translateX(70px) skewX(-5deg);
         }
         li[data-key="computer"]  {
-          transform: translateX(48px) skewX(-5deg);
+          transform: translateX(50px) skewX(-5deg);
         }
         li[data-key="biological"]  {
-          transform: translateX(0px) skewX(-5deg);
+          transform: translateX(26px) skewX(-5deg);
         }
       }
 
       .dept_class_item {
-        margin: 2vh;
+        margin: 3vh;
 
         font-size: 2.6vh;
 
@@ -1004,7 +1004,7 @@ export default {
       font-weight: 500;
       letter-spacing: 1px;
       line-height: 28px;
-      transform: rotateZ(-3deg);
+      transform: rotateZ(-5deg);
     }
 
     .dept_decoration_top {

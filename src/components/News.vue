@@ -92,7 +92,7 @@ export default {
   }
 
   /*
-    mobile laytou css
+    mobile layout css
   */
   @media only screen and (max-width: 551px) {
     .news_page {
@@ -169,21 +169,22 @@ export default {
 
           li {
             width: 100%;
-            line-height: 7vh;
 
             background-color: #942323;
 
             margin: 0;
-            padding: 0vw 4vw;
+            padding: 2vh 4vw;
             border-radius: 2vh;
             box-sizing: border-box;
 
+            line-height: 2.5vh;
             font-size: 2.5vh;
             color: white;
             text-align: left;
 
             cursor: pointer;
             transition: filter .3s ease;
+
             &:hover {
               filter: brightness(120%);
             }
@@ -209,7 +210,10 @@ export default {
 
               transform-origin: top;
               transition: transform .3s ease;
-
+              /deep/ p {
+                line-height: 200%;
+                font-size: 2vh;
+              }
             }
 
           }
@@ -359,11 +363,11 @@ export default {
             background-color: #942323;
 
             margin: 0;
-            padding: 0vw 2vw;
+            padding: 1.5vh 2vw;
             border-radius: 2vh;
             box-sizing: border-box;
 
-            line-height: 6vh;
+            line-height: 2.5vh;
             font-size: 2.5vh;
             color: white;
             text-align: left;
@@ -391,14 +395,16 @@ export default {
             div {
               background-color: transparent;
 
-              line-height: 2vh;
               text-align: left;
               font-size: 2vh;
               color: white;
 
               transform-origin: top;
               transition: transform .3s ease;
-
+              /deep/ p {
+                line-height: 200%;
+                font-size: 2vh;
+              }
             }
           }
           li+li {
