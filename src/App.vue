@@ -57,9 +57,13 @@ export default {
   mounted: function () {
     // config click event
     document.addEventListener('click', this.clickEffect)
-    // add logo line animation
     const self = this
     const logo = this.$el.querySelector('#logo')
+    if (this.$route.query.page !== 'intro') {
+      logo.parentNode.removeChild(logo)
+      return
+    }
+    // add logo line animation
     anime({
       targets: 'svg path, svg circle',
       strokeDashoffset: [anime.setDashoffset, 0],

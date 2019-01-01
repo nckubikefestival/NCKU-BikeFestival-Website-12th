@@ -14,8 +14,8 @@
             li(v-for="(type, index) in typeEText" v-bind:key="type" v-bind:data-text="typeCText[index]" v-on:click="clickType(index)" v-bind:style="{'backgroundImage': 'url(' + require(`../assets/parent/type_${index + 1}.svg`) + ')'}")
         section(v-show="type !== -1" class="parent_articles_list_section")
           div(class="parent_filter")
-            button(id="time_re-arrange" v-on:click="arrangeType = 0") 由新到舊
-            button(id="hot_re-arrange" v-on:click="arrangeType = 1") 熱門程度
+            button(id="time_re-arrange" v-on:click="arrangeList(0)") 由新到舊
+            button(id="hot_re-arrange" v-on:click="arrangeList(1)") 熱門程度
             label
           div(class="parent_articles_list")
             ul
@@ -49,22 +49,23 @@ export default {
         health: [],
         future: []
       },
-      tempArticles: []
+      tempArticles: [],
+      loader: null
     }
   },
   computed: {
     rearrangeArticles: function () {
       if (this.arrangeType === 0) {
         return this.tempArticles.slice(0).sort((a, b) => b.Timestamp._seconds - a.Timestamp._seconds)
-      } else {
-        return this.tempArticles.slice(0).sort((a, b) => b.Count - a.Count)
       }
+      return this.tempArticles.slice(0).sort((a, b) => b.Count - a.Count)
     },
     clientWidth: function () {
       return document.body.clientWidth
     }
   },
   mounted: async function () {
+    this.loader = this.$loading.show()
     for (let index of [...Array(5).keys()]) {
       try {
         // fetch the articles from database
@@ -75,6 +76,7 @@ export default {
         console.log(error)
       }
     }
+    this.loader.hide()
   },
   methods: {
     clickType: async function (index) {
@@ -125,6 +127,17 @@ export default {
       // hide scrollbar
       const scrollbar = document.querySelector('.parent_article_scrollbar')
       scrollbar.style.setProperty('display', 'none')
+    },
+    arrangeList: function (value) {
+      this.arrangeType = value
+      // update currentIndex
+      const targetContent = this.$el.querySelector('#article').textContent
+      const target = this.rearrangeArticles.find(target => {
+        const article = document.createElement('article')
+        article.innerHTML = target.Content
+        return article.textContent === targetContent
+      })
+      this.currentIndex = this.rearrangeArticles.indexOf(target)
     },
     scrollbarRefresh: function () {
       if (document.body.clientWidth < 552) {

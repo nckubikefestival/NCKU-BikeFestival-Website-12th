@@ -6,6 +6,8 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VShowSlide from 'v-show-slide'
+import VueLoading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css'
 
 Vue.config.productionTip = false
 Vue.prototype.axios = axios
@@ -15,6 +17,17 @@ Vue.use(VShowSlide, {
   customEasing: {
     exampleEasing: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
   }
+})
+
+Vue.use(VueLoading, {
+  canCancel: false,
+  color: '#942323',
+  loader: 'spinner',
+  width: 100,
+  height: 100,
+  backgroundColor: '#ffffff',
+  isFullPage: true,
+  opacity: 0.66
 })
 
 /* eslint-disable no-new */

@@ -30,7 +30,8 @@ export default {
   data: function () {
     return {
       news: [],
-      currentIndex: -1
+      currentIndex: -1,
+      loader: null
     }
   },
   mounted: async function () {
@@ -38,6 +39,7 @@ export default {
     this.numberDom1 = document.querySelector('#news_number_1')
     this.numberDom2 = document.querySelector('#news_number_2')
     this.timeCounter()
+    this.loader = this.$loading.show()
     // get news from database
     try {
       // fetch the articles from database
@@ -47,6 +49,7 @@ export default {
     } catch (error) {
       console.log(error)
     }
+    this.loader.hide()
   },
   methods: {
     timeCounter: function () {

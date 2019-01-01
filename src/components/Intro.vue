@@ -54,6 +54,12 @@ export default {
         number = require(`../assets/number_${Math.floor(day % 10)}.svg`)
         this.numberDom2.style.setProperty('background-image', `url(${number})`)
       }
+    },
+    checkAvailable: function (index) {
+      if (index === 2 || index === 3) {
+        alert('敬請期待')
+      }
+      console.log('test')
     }
   }
 }
