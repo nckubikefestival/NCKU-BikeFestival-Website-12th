@@ -50,7 +50,6 @@ export default {
   },
   computed: {
     showDeptCollege: function () {
-      console.log(this.check)
       return this.check
     }
   },

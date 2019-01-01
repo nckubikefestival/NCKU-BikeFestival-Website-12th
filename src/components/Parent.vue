@@ -97,7 +97,6 @@ export default {
       // replace the old node with new node.
       oldNode.parentNode.replaceChild(newNode, oldNode)
       // add Count of the article
-      console.log(this.rearrangeArticles[index])
       if (!this.currentCount.find(target => target === this.rearrangeArticles[index].Id)) {
         const url = `https://us-central1-ncku-bikefestival-12th.cloudfunctions.net/addArticleCount?id=${this.rearrangeArticles[index].Id}`
         await axios.get(url)
@@ -140,6 +139,9 @@ export default {
     },
     arrangeList: function (value) {
       this.arrangeType = value
+      if (document.body.clientWidth < 552) {
+        return
+      }
       // update currentIndex
       const targetContent = this.$el.querySelector('#article').textContent
       const target = this.rearrangeArticles.find(target => {
@@ -172,7 +174,6 @@ export default {
           const newPercent = Math.min(1, (target.scrollTop / (target.scrollHeight - articleHeight - 40)))
           const currentPosition = Math.floor(articleHeight * newPercent * (articleHeight - 70) / articleHeight)
           thumb.style.setProperty('transform', `translateY(${Math.floor(currentPosition)}px) skewX(7.5deg)`)
-          console.log(currentPosition)
         })
         // config scrollbar thumbs drag event
         thumb.addEventListener('mousedown', function (event) {

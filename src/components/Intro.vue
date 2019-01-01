@@ -59,7 +59,6 @@ export default {
       if (index === 2 || index === 3) {
         alert('敬請期待')
       }
-      console.log('test')
     }
   }
 }
