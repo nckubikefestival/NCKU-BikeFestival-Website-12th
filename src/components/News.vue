@@ -143,7 +143,7 @@ export default {
 
         width: 100%;
         height: 100%;
-        overflow-y: scroll;
+        overflow-y: auto;
         -webkit-overflow-scrolling: touch;
 
         &::-webkit-scrollbar {
@@ -178,7 +178,7 @@ export default {
             border-radius: 2vh;
             box-sizing: border-box;
 
-            font-size: 3vh;
+            font-size: 2.5vh;
             color: white;
             text-align: left;
 
@@ -192,6 +192,7 @@ export default {
             }
             time {
               float: right;
+              font-size: 2vh;
             }
             p {
               display: inline-block;
@@ -266,7 +267,7 @@ export default {
     }
   }
   /*
-    computer laytou css
+    computer layout css
   */
   @media only screen and (min-width: 552px) {
     .news_page {
@@ -363,7 +364,7 @@ export default {
             box-sizing: border-box;
 
             line-height: 6vh;
-            font-size: 3vh;
+            font-size: 2.5vh;
             color: white;
             text-align: left;
 
@@ -380,7 +381,7 @@ export default {
 
             time {
               float: right;
-              font-size: 2.5vh;
+              font-size: 2vh;
             }
             p {
               display: inline-block;

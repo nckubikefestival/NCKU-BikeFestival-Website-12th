@@ -137,7 +137,7 @@ export default {
     .intro_layout {
       display: grid;
       grid-template-columns: 100vw;
-      grid-template-rows: 1fr 3fr 1.5fr;
+      grid-template-rows: 10vh 3fr 1.5fr;
       grid-template-areas: "empty"
         "logo"
         "menu";

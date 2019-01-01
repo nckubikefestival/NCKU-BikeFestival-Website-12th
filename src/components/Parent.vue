@@ -373,7 +373,9 @@ export default {
               content: attr(data-text);
 
               font-size: 6vw;
-              margin: 2vw;
+              margin: 4vw;
+
+              transform: skewX(5deg);
 
             }
             &:hover {
@@ -413,7 +415,7 @@ export default {
             border-radius: 2vw;
 
             color: white;
-            font-size: 5vw;
+            font-size: 4.5vw;
 
             cursor: pointer;
 

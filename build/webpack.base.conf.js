@@ -3,6 +3,7 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+const autoPrefixer = require('autoprefixer')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -44,7 +45,10 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: vueLoaderConfig
+        options: {
+          vueLoaderConfig,
+          postcss: [autoPrefixer({ browsers: ['last 10 Chrome versions', 'last 5 Firefox versions', 'Safari >= 6', 'ie > 8']})]
+        }
       },
       {
         test: /\.js$/,
@@ -55,7 +59,7 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
-          limit: 10000,
+          limit: 20000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
         }
       },

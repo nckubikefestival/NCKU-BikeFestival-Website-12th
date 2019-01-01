@@ -59,7 +59,7 @@ export default {
     document.addEventListener('click', this.clickEffect)
     const self = this
     const logo = this.$el.querySelector('#logo')
-    if (this.$route.query.page !== 'intro') {
+    if (this.$route.name !== 'Intro') {
       logo.parentNode.removeChild(logo)
       return
     }
@@ -217,7 +217,7 @@ export default {
     height: 100vh;
     display: block;
     margin: 0 auto;
-    transform: translate(-20px, 0);
+    transform: translate(-10px, 0);
   }
 
   .slide-up {
