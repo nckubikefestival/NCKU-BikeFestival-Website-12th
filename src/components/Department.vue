@@ -4,7 +4,7 @@
     router-link(tag="button" to="/" class="dept_return_button")
     div(class="dept_decoration_top")
     div(class="dept_decoration_bottom")
-    svg(class="external_circle" width="15%" height="1080" viewBox="0 0 15% 1080")
+    svg(class="external_circle" width="15%" height="1580" viewBox="0 0 278 1080")
       g
         ellipse(cx="90%" cy="540" rx="50%" ry="600" stroke="#8e2224" stroke-width="1px" fill="none")
     div(class="dept_layout")
@@ -992,17 +992,17 @@ export default {
       position: absolute;
       z-index: 20;
       left: 15vw;
-      top: 4vh;
+      top: 6vh;
       display: inline-block;
       background: #942323;
       border-radius: 50px;
       text-align: center;
       color: white;
-      padding: 18px 80px 18px 80px;
-      font-size: 28px;
+      padding: 1vw 4.2vw 1vw 4.2vw;
+      font-size: 1.4vw;
       font-weight: 500;
       letter-spacing: 1px;
-      line-height: 28px;
+      line-height: 1.4vw;
       transform: rotateZ(-5deg);
     }
 

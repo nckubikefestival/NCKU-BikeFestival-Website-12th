@@ -186,7 +186,7 @@ export default {
           display: inline-block;
           width: 80vw;
           height: 10vw;
-          margin: 0.5em 0em;
+          margin: 1em 0em;
           box-sizing: border-box;
 
           background-repeat: no-repeat;
@@ -194,15 +194,15 @@ export default {
           background-size: 10% 80%;
 
           border: 0px solid #942323;
-          border-radius: 20px;
+          border-radius: 1vw;
           box-sizing: content-box;
 
           transition: filter .3s ease, border-width .2s ease, border-radius .2s ease;
 
           cursor: pointer;
           &:hover {
-            border-width: 3px;
-            border-radius: 32px;
+            border-width: 0.15vw;
+            border-radius: 1.7vw;
           }
           &:active {
             filter: brightness(50%);
@@ -254,11 +254,11 @@ export default {
       border-radius: 50px;
       text-align: center;
       color: white;
-      padding: 15px 35px 15px 35px;
-      font-size: 20px;
+      padding: 1vw 2vw 1vw 2vw;
+      font-size: 1.2vw;
       font-weight: 500;
       letter-spacing: 1px;
-      line-height: 28px;
+      line-height: 1.5vw;
       transform: rotateZ(-5deg);
     }
     .intro_layout {
@@ -412,7 +412,7 @@ export default {
           display: inline-block;
           width: 10vw;
           height: 10vw;
-          margin: 0 2em;
+          margin: 0 1vw;
           box-sizing: border-box;
 
           background-repeat: no-repeat;

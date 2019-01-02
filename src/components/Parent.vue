@@ -225,15 +225,13 @@ export default {
       width: 100vw;
       margin: 0;
       padding: 0;
+
+      background-color: #dad6b2;
+
     }
 
     .parent_background {
-      position: absolute;
-      z-index: -1;
-      top: 0vh;
-      background: #dad6b2;
-      height: 100vh;
-      width: 100vw;
+      display: none;
     }
 
     .parent_layout {
@@ -248,7 +246,6 @@ export default {
 
       width: 100vw;
       height: 100vh;
-
     }
 
     .parent_title {
@@ -640,8 +637,8 @@ export default {
       left: 10vw;
       top: 8vh;
 
-      width: 315px;
-      height: 148px;
+      width: 17vw;
+      height: 8vw;
       background-image: url("../assets/parent/parent_title.svg");
       background-repeat: no-repeat;
       background-size: 100% 100%;
@@ -694,10 +691,10 @@ export default {
 
         span {
           position: absolute;
-          left: -50px;
-          width: 70px;
-          height: 70px;
-          background: url("../assets/scrollbarThumb.svg");
+          left: -2.6vw;
+          width: 3.6vw;
+          height: 3.6vw;
+          background-image: url("../assets/scrollbarThumb.svg");
           background-repeat: no-repeat;
           background-position: 50% 40%;
           background-size: 60%;
