@@ -14,22 +14,26 @@ export default new Router({
     {
       path: '/',
       name: 'Intro',
-      component: Intro
+      component: Intro,
+      meta: { transitionName: 'slide' }
     },
     {
       path: '/parent',
       name: 'Parent',
-      component: Parent
+      component: Parent,
+      meta: { transitionName: 'slide' }
     },
     {
       path: '/news',
       name: 'News',
-      component: News
+      component: News,
+      meta: { transitionName: 'slide' }
     },
     {
       path: '/department',
       name: 'Department',
-      component: Department
+      component: Department,
+      meta: { transitionName: 'slide' }
     },
     {
       path: '/activity',

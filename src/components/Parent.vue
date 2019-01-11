@@ -96,13 +96,6 @@ export default {
       newNode.innerHTML = this.rearrangeArticles[index].Content
       // replace the old node with new node.
       oldNode.parentNode.replaceChild(newNode, oldNode)
-      // add Count of the article
-      if (!this.currentCount.find(target => target === this.rearrangeArticles[index].Id)) {
-        const url = `https://us-central1-ncku-bikefestival-12th.cloudfunctions.net/addArticleCount?id=${this.rearrangeArticles[index].Id}`
-        await axios.get(url)
-        this.currentCount.push(this.rearrangeArticles[index].Id)
-        this.rearrangeArticles[index].Count = this.rearrangeArticles[index].Count + 1
-      }
       // refresh scrollbar
       this.scrollbarRefresh()
       // update current index
@@ -112,6 +105,13 @@ export default {
         target.style.setProperty('display', 'none')
         target = document.querySelector('#article')
         target.style.setProperty('display', 'block')
+      }
+      // add Count of the article
+      if (!this.currentCount.find(target => target === this.rearrangeArticles[index].Id)) {
+        const url = `https://us-central1-ncku-bikefestival-12th.cloudfunctions.net/addArticleCount?id=${this.rearrangeArticles[index].Id}`
+        await axios.get(url)
+        this.currentCount.push(this.rearrangeArticles[index].Id)
+        this.rearrangeArticles[index].Count = this.rearrangeArticles[index].Count + 1
       }
     },
     returnChoose: function () {
@@ -595,25 +595,28 @@ export default {
   */
   @media only screen and (min-width: 552px) {
     .parent_page {
+      position: absolute;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
       height: 100vh;
       width: 100vw;
       margin: 0;
       padding: 0;
+      background: white;
+      overflow: hidden;
     }
 
     .parent_background {
       position: absolute;
-      z-index: -1;
+      z-index: 1;
       top: 0;
       left: -10vw;
       background: #dad6b2;
       height: 100vh;
       width: 75vw;
       transform: skewX(-5deg);
+      pointer-events: none;
     }
 
     .parent_layout {
@@ -656,6 +659,8 @@ export default {
       background-position: 50% 57%;
 
       overflow: hidden;
+
+      z-index: 5;
 
       article {
         width: 45vw;

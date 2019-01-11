@@ -42,17 +42,52 @@
         path(class="cls-3" d="M642.61,486.61l-8.34,23.11h-4l-8.21-23.11H626l5.85,17.53a10.32,10.32,0,0,1,.46,2.15h.07a9.8,9.8,0,0,1,.52-2.18l5.92-17.5Z")
         path(class="cls-3" d="M672.13,509.72h-3.94l-2.16-6h-9.25l-2.06,6h-3.94l8.71-23.11h4Zm-7.1-9-3.22-9.12a10,10,0,0,1-.36-1.75h-.1a8.71,8.71,0,0,1-.37,1.72l-3.21,9.15Z")
         path(class="cls-3" d="M695.6,509.72H683V486.61h3.58v20h9Z")
-    router-view
+    transition-page
+      router-view
 </template>
 
 <script>
 import anime from 'animejs'
 import Intro from './components/Intro'
+import TransitionPage from './components/TransitionPage'
+
+const DEFAULT_TRANSITION = 'fade'
+const DEFAULT_TRANSITION_MODE = 'in-out'
 
 export default {
   name: 'App',
   components: {
-    Intro
+    Intro,
+    TransitionPage
+  },
+  data: function () {
+    return {
+      transitionName: DEFAULT_TRANSITION,
+      transitionMode: DEFAULT_TRANSITION_MODE,
+      transitionEnterActiveClass: ''
+    }
+  },
+  created: function () {
+    this.$router.beforeEach((to, from, next) => {
+      let transitionName = to.meta.transitionName || from.meta.transitionName || DEFAULT_TRANSITION
+      this.transitionMode = DEFAULT_TRANSITION_MODE
+      this.transitionEnterActiveClass = `${transitionName}-enter-active`
+
+      if (to.meta.transitionName === 'zoom-in') {
+        this.transitionMode = 'in-out'
+        this.transitionEnterActiveClass = 'zoom-enter-active'
+        // Disable scrolling in the background.
+        document.body.style.overflow = 'hidden'
+      }
+      if (from.meta.transitionName === 'zoom-out') {
+        this.transitionMode = null
+        this.transitionEnterActiveClass = null
+        // Enable scrolling again.
+        document.body.style.overflow = null
+      }
+      this.transitionName = transitionName
+      next()
+    })
   },
   mounted: function () {
     // config click event
@@ -104,12 +139,23 @@ export default {
         d.parentElement.removeChild(d)
         d.removeEventListener('animationend', this)
       })
+    },
+    beforeLeave: function () {
+
+    },
+    enter: function () {
+
+    },
+    afterEnter: function () {
+
     }
   }
 }
 </script>
 
 <style lang="scss">
+  @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+
   @keyframes clickEffect {
     0% {
       opacity: 1;
@@ -150,9 +196,34 @@ export default {
     }
   }
 
+  .zoom-enter-active,
+  .zoom-leave-active {
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-name: zoom;
+  }
+
+  .zoom-leave-active {
+    animation-direction: reverse;
+  }
+
+  @keyframes zoom {
+    from {
+      opacity: 0;
+      transform: scale3d(0.3, 0.3, 0.3);
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
   body {
     margin: 0;
     padding: 0;
+    transform-origin: 0 0;
+    font-family: ‘cwTeXYen’, sans-serif;
+    overflow: hidden;
   }
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -227,5 +298,12 @@ export default {
   .fill-logo {
     animation: fill-text 3s ease-out;
     animation-fill-mode: forwards;
+  }
+
+  body.rotation-90 {
+    transform: rotate(90deg) translateY(-100%);
+  }
+  body.rotation--90 {
+    transform: rotate(-90deg) translateX(-100%);
   }
 </style>

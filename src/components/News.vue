@@ -275,18 +275,20 @@ export default {
   */
   @media only screen and (min-width: 552px) {
     .news_page {
+      position: absolute;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
       height: 100vh;
       width: 100vw;
       margin: 0;
       padding: 0;
+      background: white;
+      overflow: hidden;
     }
     .news_background {
       position: absolute;
-      z-index: -1;
+      z-index: 1;
       top: 0;
       right: -10vw;
       background: #dad6b2;
@@ -427,6 +429,8 @@ export default {
 
         width: 100%;
 
+        z-index: 5;
+
         .news_decoration_top {
           grid-area: decoration-top;
           justify-self: flex-end;
@@ -516,6 +520,8 @@ export default {
 
       width: 100%;
       height: 100%;
+
+      z-index: 5;
 
       .news_exit_button {
         grid-area: exit;
