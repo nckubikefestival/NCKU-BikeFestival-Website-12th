@@ -58,7 +58,14 @@ export default new Router({
     {
       path: '/sign-up',
       name: 'SignUp',
-      component: SignUp
+      component: SignUp,
+      beforeEnter: function (to, from, next) {
+        if (document.body.clientWidth > 552) {
+          next()
+        } else {
+          window.open('https://docs.google.com/forms/d/e/1FAIpQLScSuQEPPhXPP4yHoT-qb--A98zw_EBvKfYseK54yYQQfpw7zw/viewform')
+        }
+      }
     },
     {
       path: '/about',
