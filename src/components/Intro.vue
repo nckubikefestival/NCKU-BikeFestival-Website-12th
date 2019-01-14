@@ -17,7 +17,7 @@
           span(id="intro_dot_3")
       section(class="intro_wheel_section")
         span(class="intro_wheel_decoration_1")
-        span(class="intro_wheel")
+        router-link(to="/about" tag="span" class="intro_wheel")
         span(class="intro_wheel_decoration_2")
       section(class="intro_logo_section")
       div(class="intro_menu")
@@ -31,8 +31,8 @@ export default {
   name: 'IntroPage',
   data: function () {
     return {
-      menuText: ['最新消息', '家長專欄', '活動摘要', 'APP 介紹', '科系介紹'],
-      urlText: ['news', 'parent', 'activity', 'app', 'department'],
+      menuText: ['最新消息', '家長專欄', '活動摘要', 'APP 介紹', '科系介紹', '我要報名'],
+      urlText: ['news', 'parent', 'activity', 'app', 'department', 'sign-up'],
       numberDom1: null,
       numberDom2: null,
       numberDom3: null,
@@ -206,6 +206,8 @@ export default {
       justify-content: center;
       justify-items: center;
       align-items: center;
+
+      z-index: 5;
 
       ul {
         display: inline-block;
@@ -475,6 +477,8 @@ export default {
       justify-items: center;
       align-items: center;
 
+      z-index: 5;
+
       ul {
         display: inline-block;
         list-style-type: none;
@@ -490,6 +494,10 @@ export default {
           background-repeat: no-repeat;
           background-position: 50% 0%;
           background-size: 75% 75%;
+          &:last-child {
+            background-size: 60% 60%;
+            background-position: 50% 15%;
+          }
 
           border: 0px solid #942323;
           border-radius: 0px;
@@ -499,8 +507,8 @@ export default {
 
           cursor: pointer;
           &:hover {
-            border-width: 4px;
-            border-radius: 20px;
+            border-width: 0.2vw;
+            border-radius: 1vw;
           }
           &:active {
             filter: brightness(50%);

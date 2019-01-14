@@ -6,6 +6,8 @@ import News from '@/components/News'
 import Department from '@/components/Department'
 import Activity from '@/components/Activity'
 import APP from '@/components/APP'
+import SignUp from '@/components/SignUp'
+import About from '@/components/About'
 
 Vue.use(Router)
 
@@ -41,7 +43,7 @@ export default new Router({
       component: Activity,
       beforeEnter: function (to, from, next) {
         alert('敬請期待')
-        next(false)
+        next('/')
       }
     },
     {
@@ -50,7 +52,21 @@ export default new Router({
       component: APP,
       beforeEnter: function (to, from, next) {
         alert('敬請期待')
-        next(false)
+        next('/')
+      }
+    },
+    {
+      path: '/sign-up',
+      name: 'SignUp',
+      component: SignUp
+    },
+    {
+      path: '/about',
+      name: 'About',
+      component: About,
+      beforeEnter: function (to, from, next) {
+        alert('敬請期待')
+        next('/')
       }
     }
   ]

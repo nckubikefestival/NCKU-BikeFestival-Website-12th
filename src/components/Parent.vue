@@ -3,23 +3,23 @@
     div(class="parent_background")
     div(class="parent_title")
     div(class="parent_layout")
-      section(class="parent_article_section")
+      section(v-show="currentIndex !== -1" class="parent_article_section")
         article(id="article")
         div(class="parent_article_scrollbar")
           span
         button(v-show="currentIndex !== -1 && clientWidth < 552" class="parent_return_list_button" v-on:click="returnChoose") 返回列表
       section(class="parent_menu_section")
         div(v-show="type === -1" class="parent_type")
-          ul
-            li(v-for="(type, index) in typeEText" v-bind:key="type" v-bind:data-text="typeCText[index]" v-on:click="clickType(index)" v-bind:style="{'backgroundImage': 'url(' + require(`../assets/parent/type_${index + 1}.svg`) + ')'}")
-        section(v-show="type !== -1" class="parent_articles_list_section")
+          transition-group(tag="ul" name="list" appear)
+            li(v-for="(type, index) in typeEText" v-bind:key="type + index" v-bind:data-text="typeCText[index]" v-on:click="clickType(index)" v-bind:style="{'backgroundImage': 'url(' + require(`../assets/parent/type_${index + 1}.svg`) + ')'}")
+        section(v-show="(type !== -1 && clientWidth > 551) || (type !== -1 && currentIndex === -1 && clientWidth < 552)" class="parent_articles_list_section")
           div(class="parent_filter")
             button(id="time_re-arrange" v-on:click="arrangeList(0)") 由新到舊
             button(id="hot_re-arrange" v-on:click="arrangeList(1)") 熱門程度
             label
-          div(class="parent_articles_list")
-            ul
-              li(v-for="(iter, index) in rearrangeArticles" v-bind:key="iter.Title" v-on:click="clickArticle(index)" v-bind:class="{activeArticle: index === currentIndex}")
+          div(v-show="showArticlesList" class="parent_articles_list")
+            transition-group(tag="ul" name="list")
+              li(v-for="(iter, index) in rearrangeArticles" v-bind:key="`${index} - ${iter.Title}`" v-on:click="clickArticle(index)" v-bind:class="{activeArticle: index === currentIndex}")
                 section
                   p {{iter.Title}}
                   label {{iter.Count}}
@@ -51,7 +51,8 @@ export default {
       },
       tempArticles: [],
       loader: null,
-      currentCount: []
+      currentCount: [],
+      showArticlesList: false
     }
   },
   computed: {
@@ -88,6 +89,7 @@ export default {
       target.style.setProperty('background-image', `url(${targetImage})`)
       // set tempArticles
       this.tempArticles = this.allArticles[this.typeEText[index]]
+      this.showArticlesList = true
     },
     clickArticle: async function (index) {
       const oldNode = document.querySelector('#article')
@@ -100,26 +102,16 @@ export default {
       this.scrollbarRefresh()
       // update current index
       this.currentIndex = index
-      if (document.body.clientWidth < 552) {
-        let target = document.querySelector('.parent_articles_list_section')
-        target.style.setProperty('display', 'none')
-        target = document.querySelector('#article')
-        target.style.setProperty('display', 'block')
-      }
       // add Count of the article
       if (!this.currentCount.find(target => target === this.rearrangeArticles[index].Id)) {
         const url = `https://us-central1-ncku-bikefestival-12th.cloudfunctions.net/addArticleCount?id=${this.rearrangeArticles[index].Id}`
-        await axios.get(url)
+        axios.get(url)
         this.currentCount.push(this.rearrangeArticles[index].Id)
         this.rearrangeArticles[index].Count = this.rearrangeArticles[index].Count + 1
       }
     },
     returnChoose: function () {
       if (this.currentIndex !== -1 && document.body.clientWidth < 552) {
-        let target = document.querySelector('.parent_articles_list_section')
-        target.style.setProperty('display', 'block')
-        target = document.querySelector('#article')
-        target.style.setProperty('display', 'none')
         this.currentIndex = -1
         return
       }
@@ -206,6 +198,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .list {
+    backface-visibility: hidden;
+  }
+  .list-enter-active,
+  .list-leave-active,
+  .list-move {
+    transition: .3s ease-in-out !important;
+    transition-property: opacity, transform !important;
+    transform-origin: right center !important;
+  }
+
+  .list-enter {
+    opacity: 0 !important;
+    transform: translateX(2.5vw) scaleY(0.5) !important;
+  }
+
+  .list-enter-active {
+    transition-delay: .3s !important;
+  }
+
+  .list-enter-to {
+    opacity: 1 !important;
+    transform: translateX(0) scaleY(1) !important;
+  }
+
+  .list-leave-to {
+    opacity: 0 !important;
+    transform: translateX(-2.5vw) scaleY(0.5) !important;
+  }
+
   @-moz-document url-prefix() {
     #article {
       scrollbar-width: none;
@@ -345,6 +367,8 @@ export default {
       justify-items: center;
       align-items: center;
 
+      overflow: hidden;
+
       .parent_type {
         display: inline-block;
 
@@ -459,8 +483,6 @@ export default {
 
           height: 55vh;
           ul {
-            width: 10;
-
             list-style-type: none;
             margin: 0;
             padding: 0;
@@ -622,7 +644,7 @@ export default {
     .parent_layout {
       display: grid;
       grid-template-columns: 2fr 1fr;
-      grid-template-rows: 1fr 4fr 1fr;
+      grid-template-rows: 1fr 66vh 1fr;
       grid-template-areas: "title select"
         "article menu"
         "article .";
@@ -719,6 +741,8 @@ export default {
       justify-content: center;
       justify-items: center;
       align-items: center;
+
+      overflow: hidden;
 
       .parent_type {
         display: inline-block;
