@@ -3,10 +3,20 @@
     router-link(tag="button" to="/" class="signup_return_button")
     div(class="signup_layout")
       section(class="signup_graph_north_section")
-      section(class="signup_graph_central_section")
+        p(class="signup_graph_title") 北部
+        ve-pie(v-bind:data="regionData.north" v-bind:settings="chartSettings")
+      section(class="signup_graph_centeral_section")
+        p(class="signup_graph_title") 中部
+        ve-pie(v-bind:data="regionData.centeral" v-bind:settings="chartSettings")
       section(class="signup_graph_south_section")
+        p(class="signup_graph_title") 南部
+        ve-pie(v-bind:data="regionData.south" v-bind:settings="chartSettings")
       section(class="signup_graph_east_section")
+        p(class="signup_graph_title") 東部
+        ve-pie(v-bind:data="regionData.east" v-bind:settings="chartSettings")
       section(class="signup_graph_other_section")
+        p(class="signup_graph_title") 其他
+        ve-pie(v-bind:data="regionData.other" v-bind:settings="chartSettings")
       a(href="https://docs.google.com/forms/d/e/1FAIpQLScSuQEPPhXPP4yHoT-qb--A98zw_EBvKfYseK54yYQQfpw7zw/viewform" target="_blank" class="signup_button")
 </template>
 
@@ -16,12 +26,32 @@ import jsonp from 'jsonp'
 export default {
   data: function () {
     return {
-      region: {
-        north: 0,
-        centeral: 0,
-        east: 0,
-        south: 0,
-        other: 0
+      chartSettings: {
+        label: {
+          position: 'inside'
+        }
+      },
+      regionData: {
+        north: {
+          columns: ['school', 'number'],
+          rows: []
+        },
+        centeral: {
+          columns: ['school', 'number'],
+          rows: []
+        },
+        south: {
+          columns: ['school', 'number'],
+          rows: []
+        },
+        east: {
+          columns: ['school', 'number'],
+          rows: []
+        },
+        other: {
+          columns: ['school', 'number'],
+          rows: []
+        }
       }
     }
   },
@@ -34,27 +64,47 @@ export default {
         if (err) {
           throw err
         }
-        data = data.map(target => target[0])
+        data = data.filter(target => target[0].length > 0)
         data.forEach(target => {
-          switch (target) {
+          const index = self.regionData.north.rows.findIndex(ele => ele.school === target[1])
+          switch (target[0]) {
             case '北部':
-              self.region.north++
+              if (index !== -1) {
+                self.regionData.north.rows[index].number++
+              } else {
+                self.regionData.north.rows.push({'school': target[1], 'number': 1})
+              }
               break
             case '中部':
-              self.region.centeral++
+              if (index !== -1) {
+                self.regionData.centeral.rows[index].number++
+              } else {
+                self.regionData.centeral.rows.push({'school': target[1], 'number': 1})
+              }
               break
             case '南部':
-              self.region.south++
+              if (index !== -1) {
+                self.regionData.south.rows[index].number++
+              } else {
+                self.regionData.south.rows.push({'school': target[1], 'number': 1})
+              }
               break
             case '東部':
-              self.region.east++
+              if (index !== -1) {
+                self.regionData.east.rows[index].number++
+              } else {
+                self.regionData.east.rows.push({'school': target[1], 'number': 1})
+              }
               break
             case '其他':
-              self.region.other++
+              if (index !== -1) {
+                self.regionData.other.rows[index].number++
+              } else {
+                self.regionData.other.rows.push({'school': target[1], 'number': 1})
+              }
               break
           }
         })
-        console.log(self.region)
       })
     } catch (error) {
       console.log(error)
@@ -96,27 +146,57 @@ export default {
       height: 100vh;
       box-sizing: border-box;
 
-      padding: 5vw;
+      padding: 10vw;
     }
 
     .signup_graph_north_section {
       grid-area: north;
+      justify-self: center;
+      align-self: center;
+
+      width: 100%;
     }
 
     .signup_graph_centeral_section {
       grid-area: centeral;
+      justify-self: center;
+      align-self: center;
+
+      width: 100%;
     }
 
     .signup_graph_south_section {
       grid-area: south;
+      justify-self: center;
+      align-self: center;
+
+      width: 100%;
     }
 
     .signup_graph_east_section {
       grid-area: east;
+      justify-self: center;
+      align-self: center;
+
+      width: 100%;
     }
 
     .signup_graph_other_section {
       grid-area: other;
+      justify-self: center;
+      align-self: center;
+
+      width: 100%;
+    }
+
+    .signup_graph_title {
+      font-size: 2vw;
+      background-color: #942323;
+      color: white;
+      transform: skewX(-5deg);
+
+      margin: 2vw;
+      padding: 1vw;
     }
 
     .signup_button {

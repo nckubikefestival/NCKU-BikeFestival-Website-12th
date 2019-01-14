@@ -7,6 +7,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VShowSlide from 'v-show-slide'
 import VueLoading from 'vue-loading-overlay'
+import VePie from 'v-charts/lib/pie.common'
 import 'vue-loading-overlay/dist/vue-loading.css'
 import 'reset-css'
 
@@ -30,6 +31,8 @@ Vue.use(VueLoading, {
   isFullPage: true,
   opacity: 0.66
 })
+
+Vue.component(VePie.name, VePie)
 
 /* eslint-disable no-new */
 new Vue({
