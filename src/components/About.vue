@@ -78,7 +78,7 @@ export default {
       color: white;
       font-size: 1vw;
 
-      width: 10vw;
+      width: 12vw;
       height: 3vw;
 
       cursor: pointer;
@@ -96,14 +96,29 @@ export default {
     .about_facebook_section {
       grid-area: facebook;
 
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-rows: 3fr 1fr;
+      grid-template-areas: "facebook_qrcode"
+      "facebook_button";
+      justify-items: center;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
 
-      width: 20vw;
+      box-sizing: border-box;
+      padding: 5vw;
+
+      width: 100%;
+      height: 100%;
     }
 
     .about_facebook_qr_code {
+      grid-area: facebook_qrcode;
+
       background-image: url("../assets/about/QR_Code_nckubikefestival-facebook.svg");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-position: 50% 50%;
 
       width: 20vw;
       height: 20vw;
@@ -116,18 +131,24 @@ export default {
       grid-template-rows: 3fr 1fr;
       grid-template-areas: "instagram_qrcode"
       "instagram_button";
+      justify-items: center;
       justify-content: center;
       align-content: center;
       align-items: center;
 
       box-sizing: border-box;
-
       padding: 5vw;
+
+      width: 100%;
+      height: 100%;
     }
 
     .about_instagram_qr_code {
       grid-area: instagram_qrcode;
       background-image: url("../assets/about/QR_Code_nckubikefestival-instagram.svg");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-position: 50% 50%;
       width: 20vw;
       height: 20vw;
     }
@@ -143,18 +164,24 @@ export default {
       grid-template-rows: 3fr 1fr;
       grid-template-areas: "website_qrcode"
       "website_button";
+      justify-items: center;
       justify-content: center;
       align-content: center;
       align-items: center;
 
       box-sizing: border-box;
-
       padding: 5vw;
+
+      width: 100%;
+      height: 100%;
     }
 
     .about_website_qr_code {
       grid-area: website_qrcode;
       background-image: url("../assets/about/QR_Code_nckubikefestival-website.svg");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-position: 50% 50%;
       width: 20vw;
       height: 20vw;
     }
