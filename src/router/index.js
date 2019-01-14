@@ -63,11 +63,7 @@ export default new Router({
     {
       path: '/about',
       name: 'About',
-      component: About,
-      beforeEnter: function (to, from, next) {
-        alert('敬請期待')
-        next('/')
-      }
+      component: About
     }
   ]
 })
