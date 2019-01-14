@@ -4,29 +4,18 @@
     div(class="about_layout")
       section(class="about_facebook_section")
         div(class="about_facebook_qr_code")
-        button(id="facebook_link_button" v-on:click="OpenWindow(0)") Facebook粉絲專頁
+        a(href="https://www.facebook.com/NCKUbikefestival/" target="_blank" id="facebook_link_button") Facebook粉絲專頁
       section(class="about_instagram_section")
         div(class="about_instagram_qr_code")
-        button(id="instagram_link_button" v-on:click="OpenWindow(1)") Instagram粉絲頁面
+        a(href="https://www.instagram.com/nckubikefestival/" target="_blank" id="instagram_link_button") Instagram粉絲頁面
       section(class="about_website_section")
         div(class="about_website_qr_code")
-        button(id="website_link_button" v-on:click="OpenWindow(2)") 成大單車節官方網站
+        a(href="http://nckubikefestival.com/" target="_blank" id="website_link_button") 成大單車節官方網站
       section(class="about_sponsor_section")
 </template>
 
 <script>
 export default {
-  methods: {
-    OpenWindow: function (value) {
-      if (value === 0) {
-        // open facebook
-      } else if (value === 1) {
-        // open instagram
-      } else {
-        // open website
-      }
-    }
-  }
 }
 </script>
 
@@ -66,7 +55,11 @@ export default {
       padding: 5vw;
     }
 
-    button {
+    a {
+      text-decoration: none;
+      line-height: 3vw;
+      vertical-align: middle;
+
       box-sizing: border-box;
 
       background-color: #942323;
