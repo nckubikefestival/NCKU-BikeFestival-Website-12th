@@ -8,6 +8,7 @@ import VueAxios from 'vue-axios'
 import VShowSlide from 'v-show-slide'
 import VueLoading from 'vue-loading-overlay'
 import VePie from 'v-charts/lib/pie.common'
+import VeLiquidfill from 'v-charts/lib/liquidfill.common'
 import 'vue-loading-overlay/dist/vue-loading.css'
 import 'reset-css'
 
@@ -33,6 +34,7 @@ Vue.use(VueLoading, {
 })
 
 Vue.component(VePie.name, VePie)
+Vue.component(VeLiquidfill.name, VeLiquidfill)
 
 /* eslint-disable no-new */
 new Vue({

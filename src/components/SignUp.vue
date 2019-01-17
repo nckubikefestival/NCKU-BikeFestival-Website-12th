@@ -2,22 +2,11 @@
   div(class="signup_page")
     router-link(tag="button" to="/" class="signup_return_button")
     div(class="signup_layout")
-      section(class="signup_graph_north_section")
-        p(class="signup_graph_title") 北部
-        ve-pie(v-bind:data="regionData.north" v-bind:settings="chartSettings")
-      section(class="signup_graph_centeral_section")
-        p(class="signup_graph_title") 中部
-        ve-pie(v-bind:data="regionData.centeral" v-bind:settings="chartSettings")
-      section(class="signup_graph_south_section")
-        p(class="signup_graph_title") 南部
-        ve-pie(v-bind:data="regionData.south" v-bind:settings="chartSettings")
-      section(class="signup_graph_east_section")
-        p(class="signup_graph_title") 東部
-        ve-pie(v-bind:data="regionData.east" v-bind:settings="chartSettings")
-      section(class="signup_graph_other_section")
-        p(class="signup_graph_title") 其他
-        ve-pie(v-bind:data="regionData.other" v-bind:settings="chartSettings")
-      a(href="https://docs.google.com/forms/d/e/1FAIpQLScSuQEPPhXPP4yHoT-qb--A98zw_EBvKfYseK54yYQQfpw7zw/viewform" target="_blank" class="signup_button")
+      section(class="signup_graph_statis_section")
+        p(class="signup_graph_title") 報名區域統計
+        ve-pie(v-bind:data="regionData" v-bind:settings="chartSettings" height="600px")
+      section(class="signup_graph_signup_section")
+        a(href="https://docs.google.com/forms/d/e/1FAIpQLScSuQEPPhXPP4yHoT-qb--A98zw_EBvKfYseK54yYQQfpw7zw/viewform" target="_blank" class="signup_button")
 </template>
 
 <script>
@@ -27,10 +16,22 @@ export default {
   data: function () {
     return {
       chartSettings: {
+        radius: 200,
         label: {
-          position: 'inside'
-        }
+          position: 'inside',
+          fontSize: 24
+        },
+        offsetY: 280
       },
+      regionData: {
+        columns: ['area', 'number'],
+        rows: [ {area: '北部', number: 0}, {area: '中部', number: 0}, {area: '南部', number: 0}, {area: '東部', number: 0}, {area: '其他', number: 0} ]
+      },
+      percentData: {
+        columns: ['target', 'percent'],
+        rows: [ {target: '人數', percent: 0} ]
+      }
+      /*
       regionData: {
         north: {
           columns: ['school', 'number'],
@@ -53,6 +54,7 @@ export default {
           rows: []
         }
       }
+      */
     }
   },
   mounted: async function () {
@@ -66,42 +68,57 @@ export default {
         }
         data = data.filter(target => target[0].length > 0)
         data.forEach(target => {
-          const index = self.regionData.north.rows.findIndex(ele => ele.school === target[1])
+          // const index = self.regionData.north.rows.findIndex(ele => ele.school === target[1])
           switch (target[0]) {
             case '北部':
+              self.regionData.rows[0].number++
+              /*
               if (index !== -1) {
                 self.regionData.north.rows[index].number++
               } else {
                 self.regionData.north.rows.push({'school': target[1], 'number': 1})
               }
+              */
               break
             case '中部':
+              self.regionData.rows[1].number++
+              /*
               if (index !== -1) {
                 self.regionData.centeral.rows[index].number++
               } else {
                 self.regionData.centeral.rows.push({'school': target[1], 'number': 1})
               }
+              */
               break
             case '南部':
+              self.regionData.rows[2].number++
+              /*
               if (index !== -1) {
                 self.regionData.south.rows[index].number++
               } else {
                 self.regionData.south.rows.push({'school': target[1], 'number': 1})
               }
+              */
               break
             case '東部':
+              self.regionData.rows[3].number++
+              /*
               if (index !== -1) {
                 self.regionData.east.rows[index].number++
               } else {
                 self.regionData.east.rows.push({'school': target[1], 'number': 1})
               }
+              */
               break
             case '其他':
+              self.regionData.rows[4].number++
+              /*
               if (index !== -1) {
                 self.regionData.other.rows[index].number++
               } else {
                 self.regionData.other.rows.push({'school': target[1], 'number': 1})
               }
+              */
               break
           }
         })
@@ -134,10 +151,8 @@ export default {
 
     .signup_layout {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      grid-template-rows: 3fr 1fr;
-      grid-template-areas: "north centeral south east other"
-        "button button button button button";
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-areas: "statis signup";
       justify-content: center;
       align-content: center;
       align-items: center;
@@ -146,47 +161,54 @@ export default {
       height: 100vh;
       box-sizing: border-box;
 
-      padding: 10vw;
+      padding: 8vw;
     }
 
-    .signup_graph_north_section {
-      grid-area: north;
+    .signup_graph_statis_section {
+      grid-area: statis;
       justify-self: center;
       align-self: center;
 
       width: 100%;
+      height: 100%;
     }
 
-    .signup_graph_centeral_section {
-      grid-area: centeral;
+    .signup_graph_signup_section {
+      grid-area: signup;
       justify-self: center;
       align-self: center;
+      align-content: center;
+
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
 
       width: 100%;
-    }
+      height: 100%;
 
-    .signup_graph_south_section {
-      grid-area: south;
-      justify-self: center;
-      align-self: center;
+      a {
+        width: 20vw;
+        height: 20vw;
 
-      width: 100%;
-    }
+        background-image: url('../assets/signup/button.svg');
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-size: 100% 100%;
 
-    .signup_graph_east_section {
-      grid-area: east;
-      justify-self: center;
-      align-self: center;
+        border: none;
+        outline: none;
 
-      width: 100%;
-    }
+        cursor: pointer;
 
-    .signup_graph_other_section {
-      grid-area: other;
-      justify-self: center;
-      align-self: center;
+        transition: transform .2s ease-in-out, filter .2s ease-in-out;
+        &:hover {
+          transform: scale(1.08);
+          filter: brightness(120%);
+        }
+      }
 
-      width: 100%;
     }
 
     .signup_graph_title {
@@ -195,34 +217,11 @@ export default {
       color: white;
       transform: skewX(-5deg);
 
-      margin: 2vw;
+      margin: 2vw auto;
       padding: 1vw;
-    }
 
-    .signup_button {
-      grid-area: button;
-      justify-self: center;
-      align-self: center;
-
-      width: 10vw;
-      height: 10vw;
-
-      background-image: url('../assets/signup/button.svg');
-      background-color: transparent;
-      background-repeat: no-repeat;
-      background-position: 50% 50%;
-      background-size: 100% 100%;
-
-      border: none;
-      outline: none;
-
-      cursor: pointer;
-
-      transition: transform .2s ease-in-out, filter .2s ease-in-out;
-      &:hover {
-        transform: scale(1.08);
-        filter: brightness(120%);
-      }
+      width: 20vw;
+      height: 2vw;
     }
 
     .signup_return_button {
