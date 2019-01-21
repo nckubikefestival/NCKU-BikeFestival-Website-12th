@@ -1,12 +1,16 @@
 <template lang="pug">
   div(class="signup_page")
     router-link(tag="button" to="/" class="signup_return_button")
+    div(class="signup_background_1")
+    div(class="signup_background_2")
     div(class="signup_layout")
+      div(class="external_circle")
+      div(class="internal_circle")
+      span(class="signup_bike")
+      a(href="https://docs.google.com/forms/d/e/1FAIpQLScSuQEPPhXPP4yHoT-qb--A98zw_EBvKfYseK54yYQQfpw7zw/viewform" target="_blank" class="signup_button") 我要報名
       section(class="signup_graph_statis_section")
-        p(class="signup_graph_title") 報名區域統計
         ve-pie(v-bind:data="regionData" v-bind:settings="chartSettings" height="600px")
-      section(class="signup_graph_signup_section")
-        a(href="https://docs.google.com/forms/d/e/1FAIpQLScSuQEPPhXPP4yHoT-qb--A98zw_EBvKfYseK54yYQQfpw7zw/viewform" target="_blank" class="signup_button")
+    p(class="signup_title") NCKU BIKE FESTIVAL
 </template>
 
 <script>
@@ -18,10 +22,18 @@ export default {
       chartSettings: {
         radius: 200,
         label: {
-          position: 'inside',
           fontSize: 24
         },
-        offsetY: 280
+        labelLine: {
+          normal: {
+            width: 200,
+            length: 100
+          },
+          emphasis: {
+            show: true
+          }
+        },
+        offsetY: 300
       },
       regionData: {
         columns: ['area', 'number'],
@@ -31,30 +43,6 @@ export default {
         columns: ['target', 'percent'],
         rows: [ {target: '人數', percent: 0} ]
       }
-      /*
-      regionData: {
-        north: {
-          columns: ['school', 'number'],
-          rows: []
-        },
-        centeral: {
-          columns: ['school', 'number'],
-          rows: []
-        },
-        south: {
-          columns: ['school', 'number'],
-          rows: []
-        },
-        east: {
-          columns: ['school', 'number'],
-          rows: []
-        },
-        other: {
-          columns: ['school', 'number'],
-          rows: []
-        }
-      }
-      */
     }
   },
   mounted: async function () {
@@ -72,53 +60,18 @@ export default {
           switch (target[0]) {
             case '北部':
               self.regionData.rows[0].number++
-              /*
-              if (index !== -1) {
-                self.regionData.north.rows[index].number++
-              } else {
-                self.regionData.north.rows.push({'school': target[1], 'number': 1})
-              }
-              */
               break
             case '中部':
               self.regionData.rows[1].number++
-              /*
-              if (index !== -1) {
-                self.regionData.centeral.rows[index].number++
-              } else {
-                self.regionData.centeral.rows.push({'school': target[1], 'number': 1})
-              }
-              */
               break
             case '南部':
               self.regionData.rows[2].number++
-              /*
-              if (index !== -1) {
-                self.regionData.south.rows[index].number++
-              } else {
-                self.regionData.south.rows.push({'school': target[1], 'number': 1})
-              }
-              */
               break
             case '東部':
               self.regionData.rows[3].number++
-              /*
-              if (index !== -1) {
-                self.regionData.east.rows[index].number++
-              } else {
-                self.regionData.east.rows.push({'school': target[1], 'number': 1})
-              }
-              */
               break
             case '其他':
               self.regionData.rows[4].number++
-              /*
-              if (index !== -1) {
-                self.regionData.other.rows[index].number++
-              } else {
-                self.regionData.other.rows.push({'school': target[1], 'number': 1})
-              }
-              */
               break
           }
         })
@@ -131,6 +84,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @keyframes roll {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
   /*
     computer layout css
   */
@@ -143,16 +104,34 @@ export default {
       justify-items: flex-start;
       height: 100vh;
       width: 100vw;
-      background: #dad6b2;
       margin: 0;
       padding: 0;
       overflow: hidden;
     }
+    .signup_background_1 {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: -10vw;
+      background: #dad6b2;
+      height: 100vh;
+      width: 25vw;
+      transform: skewX(-5deg);
+    }
+    .signup_background_2 {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 85vw;
+      background: #dad6b2;
+      height: 100vh;
+      width: 25vw;
+      transform: skewX(-5deg);
+    }
 
     .signup_layout {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-areas: "statis signup";
+      grid-template-columns: 1fr;
       justify-content: center;
       align-content: center;
       align-items: center;
@@ -165,7 +144,6 @@ export default {
     }
 
     .signup_graph_statis_section {
-      grid-area: statis;
       justify-self: center;
       align-self: center;
 
@@ -173,55 +151,82 @@ export default {
       height: 100%;
     }
 
-    .signup_graph_signup_section {
-      grid-area: signup;
-      justify-self: center;
-      align-self: center;
-      align-content: center;
+    .signup_button {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      z-index: 50;
 
-      display: flex;
-      justify-content: center;
-      align-content: center;
-      align-items: center;
-
-      width: 100%;
-      height: 100%;
-
-      a {
-        width: 20vw;
-        height: 20vw;
-
-        background-image: url('../assets/signup/button.svg');
-        background-color: transparent;
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
-        background-size: 100% 100%;
-
-        border: none;
-        outline: none;
-
-        cursor: pointer;
-
-        transition: transform .2s ease-in-out, filter .2s ease-in-out;
-        &:hover {
-          transform: scale(1.08);
-          filter: brightness(120%);
-        }
-      }
-
-    }
-
-    .signup_graph_title {
-      font-size: 2vw;
+      width: 18vh;
+      height: 8vh;
       background-color: #942323;
+
       color: white;
-      transform: skewX(-5deg);
+      border: none;
+      outline: none;
+      text-decoration: none;
+      font-size: 3vh;
+      line-height: 8vh;
 
-      margin: 2vw auto;
-      padding: 1vw;
+      cursor: pointer;
+      transition: transform .2s ease-in-out, filter .2s ease-in-out;
+      &:hover {
+        transform: scale(1.08);
+        filter: brightness(120%);
+      }
+    }
 
-      width: 20vw;
-      height: 2vw;
+    .external_circle {
+      position: absolute;
+      width: 46vh;
+      height: 46vh;
+
+      margin: auto;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+
+      border-radius: 100%;
+      border: 3px solid #942323;
+    }
+
+    .internal_circle {
+      position: absolute;
+      width: 41vh;
+      height: 41vh;
+
+      margin: auto;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+
+      border-radius: 100%;
+      border: 3px solid #942323;
+    }
+
+    .signup_bike {
+      position: absolute;
+      width: 55vh;
+      height: 55vh;
+
+      margin: auto;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+
+      background-image: url("../assets/signup/bike.svg");
+      background-repeat: no-repeat;
+      background-position: 0% 50%;
+      background-size: 7.5% 12%;
+
+      animation: roll 4s linear infinite;
+
     }
 
     .signup_return_button {
@@ -251,6 +256,23 @@ export default {
       &:active {
         filter: brightness(80%);
       }
+    }
+
+    .signup_title {
+      position: absolute;
+      z-index: 20;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      bottom: 4vh;
+      display: inline-block;
+      border-radius: 50px;
+      text-align: center;
+      color: #942323;
+      font-size: 4vh;
+      font-weight: 500;
+      letter-spacing: 0.5vw;
+      line-height: 4vh;
     }
   }
 </style>
