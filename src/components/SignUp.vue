@@ -15,7 +15,8 @@
 </template>
 
 <script>
-import jsonp from 'jsonp'
+import jsonpAdapter from 'axios-jsonp'
+import axios from 'axios'
 
 export default {
   data: function () {
@@ -31,7 +32,7 @@ export default {
         labelLine: {
           normal: {
             width: 200,
-            length: 100,
+            length: 50,
             lineStyle: {
               color: '#942323'
             }
@@ -62,34 +63,33 @@ export default {
   },
   mounted: async function () {
     const url = `https://script.google.com/macros/s/AKfycbyLqzX4qnEJ6SYkTctEUjH_VeNTQNjCa1wiayYbQhcJ/exec`
-    const self = this
+    // const self = this
     try {
       // use jsonp to deal with cors
-      jsonp(url, { timeout: 5000 }, (err, data) => {
-        if (err) {
-          throw err
+      const result = await axios({
+        url: url,
+        adapter: jsonpAdapter,
+        callbackParamName: 'callback'
+      })
+      const data = result.data.filter(target => target[0].length > 0)
+      data.forEach(target => {
+        switch (target[0]) {
+          case '北部':
+            this.regionData.rows[0].number++
+            break
+          case '中部':
+            this.regionData.rows[1].number++
+            break
+          case '南部':
+            this.regionData.rows[2].number++
+            break
+          case '東部':
+            this.regionData.rows[3].number++
+            break
+          case '其他':
+            this.regionData.rows[4].number++
+            break
         }
-        data = data.filter(target => target[0].length > 0)
-        data.forEach(target => {
-          // const index = self.regionData.north.rows.findIndex(ele => ele.school === target[1])
-          switch (target[0]) {
-            case '北部':
-              self.regionData.rows[0].number++
-              break
-            case '中部':
-              self.regionData.rows[1].number++
-              break
-            case '南部':
-              self.regionData.rows[2].number++
-              break
-            case '東部':
-              self.regionData.rows[3].number++
-              break
-            case '其他':
-              self.regionData.rows[4].number++
-              break
-          }
-        })
       })
     } catch (error) {
       console.log(error)
