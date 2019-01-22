@@ -65,6 +65,7 @@ export default new Router({
           next()
         } else {
           window.open('https://docs.google.com/forms/d/e/1FAIpQLScSuQEPPhXPP4yHoT-qb--A98zw_EBvKfYseK54yYQQfpw7zw/viewform')
+          next('/')
         }
       }
     },
