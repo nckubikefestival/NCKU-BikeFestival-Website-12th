@@ -21,7 +21,7 @@ export default {
   data: function () {
     return {
       chartSettings: {
-        radius: 200,
+        radius: 150,
         label: {
           normal: {
             fontSize: 24,

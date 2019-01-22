@@ -77,7 +77,11 @@ export default new Router({
     {
       path: '/sponsor',
       name: 'Sponsor',
-      component: Sponsor
+      component: Sponsor,
+      beforeEnter: function (to, from, next) {
+        alert('敬請期待')
+        next('/')
+      }
     }
   ]
 })

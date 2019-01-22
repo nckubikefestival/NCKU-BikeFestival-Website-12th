@@ -31,8 +31,8 @@ export default {
   name: 'IntroPage',
   data: function () {
     return {
-      menuText: ['最新消息', '家長專欄', '活動摘要', '科系介紹', '我要報名', '贊助名單'],
-      urlText: ['news', 'parent', 'activity', 'department', 'sign-up', 'sponsor'],
+      menuText: ['最新消息', '家長專欄', '活動摘要', 'APP 介紹', '科系介紹', '我要報名', '贊助名單'],
+      urlText: ['news', 'parent', 'activity', 'app', 'department', 'sign-up', 'sponsor'],
       numberDom1: null,
       numberDom2: null,
       numberDom3: null,
@@ -170,7 +170,7 @@ export default {
       grid-template-areas: "empty"
         "logo"
         "menu";
-      grid-gap: 5vw;
+      grid-gap: 12vw;
       align-items: center;
       justify-items: center;
       width: 100vw;
@@ -201,30 +201,43 @@ export default {
       align-self: center;
 
       display: flex;
-      width: 80%;
-      height: 80%;
+      width: 100%;
+      height: 100%;
       justify-content: center;
       justify-items: center;
       align-items: center;
 
       z-index: 5;
 
+      padding: 5vw;
+      box-sizing: border-box;
+
       ul {
-        display: inline-block;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        justify-content: center;
+        align-content: center;
+        align-items: center;
         list-style-type: none;
         margin: 0;
-        margin-bottom: 2vw;
         padding: 0;
+
+        width: 100%;
+        height: 100%;
         li {
+          justify-self: center;
+          align-self: center;
+
           display: inline-block;
-          width: 80vw;
-          height: 10vw;
+          width: 20vw;
+          height: 20vw;
           margin: 2vw 0;
           box-sizing: border-box;
 
           background-repeat: no-repeat;
-          background-position: 25% 50%;
-          background-size: 10% 80%;
+          background-position: 50% 0%;
+          background-size: 70% 70%;
 
           border: 0px solid #942323;
           border-radius: 1vw;
@@ -242,10 +255,10 @@ export default {
           }
 
           p {
-            display: inline;
-            font-size: 6vw;
-            line-height: 10vw;
-            margin-left: 10vw;
+            display: inline-block;
+            font-size: 4vw;
+            line-height: 4vw;
+            margin-top: 15vw;
             color: #942323;
           }
         }
