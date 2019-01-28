@@ -74,6 +74,7 @@ export default {
         const url = `https://us-central1-ncku-bikefestival-12th.cloudfunctions.net/getParentArticles?type=${index}`
         const result = await axios.get(url)
         this.allArticles[this.typeEText[index]] = result.data
+        console.log(result.data)
       } catch (error) {
         console.log(error)
       }
@@ -323,6 +324,12 @@ export default {
           max-width: 90vw;
           width: 90vw;
           object-fit: cover;
+        }
+        & /deep/ a {
+          color: #1E556D !important;
+        }
+        & /deep/ p a {
+          color: #1E556D !important;
         }
       }
 
@@ -697,6 +704,13 @@ export default {
         &::-webkit-scrollbar {
           width: 0px;
           background: transparent;
+        }
+
+        & /deep/ a {
+          color: #1E556D !important;
+        }
+        & /deep/ p a {
+          color: #1E556D !important;
         }
       }
 

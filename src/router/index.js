@@ -5,7 +5,6 @@ import Parent from '@/components/Parent'
 import News from '@/components/News'
 import Department from '@/components/Department'
 import Activity from '@/components/Activity'
-import APP from '@/components/APP'
 import SignUp from '@/components/SignUp'
 import About from '@/components/About'
 import Sponsor from '@/components/Sponsor'
@@ -42,15 +41,6 @@ export default new Router({
       path: '/activity',
       name: 'Activity',
       component: Activity,
-      beforeEnter: function (to, from, next) {
-        alert('敬請期待')
-        next('/')
-      }
-    },
-    {
-      path: '/app',
-      name: 'APP',
-      component: APP,
       beforeEnter: function (to, from, next) {
         alert('敬請期待')
         next('/')

@@ -31,8 +31,8 @@ export default {
   name: 'IntroPage',
   data: function () {
     return {
-      menuText: ['最新消息', '家長專欄', '活動摘要', 'APP 介紹', '科系介紹', '我要報名', '贊助名單'],
-      urlText: ['news', 'parent', 'activity', 'app', 'department', 'sign-up', 'sponsor'],
+      menuText: ['最新消息', '家長專欄', '活動摘要', '科系介紹', '我要報名', '贊助名單'],
+      urlText: ['news', 'parent', 'activity', 'department', 'sign-up', 'sponsor'],
       numberDom1: null,
       numberDom2: null,
       numberDom3: null,
@@ -215,12 +215,12 @@ export default {
       ul {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
         justify-content: center;
         align-content: center;
         align-items: center;
         list-style-type: none;
-        margin: 0;
+        margin: 5vh 0;
         padding: 0;
 
         width: 100%;
