@@ -74,7 +74,6 @@ export default {
         const url = `https://us-central1-ncku-bikefestival-12th.cloudfunctions.net/getParentArticles?type=${index}`
         const result = await axios.get(url)
         this.allArticles[this.typeEText[index]] = result.data
-        console.log(result.data)
       } catch (error) {
         console.log(error)
       }
@@ -152,7 +151,7 @@ export default {
       const scrollbar = document.querySelector('.parent_article_scrollbar')
       const thumb = document.querySelector('.parent_article_scrollbar span')
       const articleHeight = target.clientHeight
-      const viewportRatio = articleHeight / (target.scrollHeight)
+      const viewportRatio = articleHeight / target.scrollHeight
       // reset scrollbar thumbs
       thumb.style.setProperty('transform', `translateY(0px) skewX(7.5deg)`)
       target.scrollTop = 0
