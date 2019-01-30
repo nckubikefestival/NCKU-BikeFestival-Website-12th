@@ -325,10 +325,12 @@ export default {
           object-fit: cover;
         }
         & /deep/ a {
-          color: #1E556D !important;
+          color: #1E556D;
+          text-decoration: none;
         }
         & /deep/ p a {
-          color: #1E556D !important;
+          color: #1E556D;
+          text-decoration: none;
         }
       }
 

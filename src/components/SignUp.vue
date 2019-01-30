@@ -9,39 +9,42 @@
       div(class="signup_decoration_top")
       section(class="signup_graph_statis_section")
         a(href="https://docs.google.com/forms/d/e/1FAIpQLScSuQEPPhXPP4yHoT-qb--A98zw_EBvKfYseK54yYQQfpw7zw/viewform" target="_blank" class="signup_button") 我要報名
-        ve-pie(v-bind:data="regionData" v-bind:settings="chartSettings" height="600px")
+        ve-pie(ref="chart" v-bind:data="regionData" v-bind:settings="chartSettings" v-bind:extend="chartExtends" height="600px")
       div(class="signup_decoration_bottom")
     p(class="signup_title") NCKU BIKE FESTIVAL
 </template>
 
 <script>
-import jsonpAdapter from 'axios-jsonp'
 import axios from 'axios'
 
 export default {
   data: function () {
     return {
+      chartExtends: {
+        tooltip: {
+          formatter: '{b} {d}%'
+        },
+        series: {
+          radius: '70%'
+        }
+      },
       chartSettings: {
-        radius: 200,
         label: {
           normal: {
-            fontSize: 24,
+            fontSize: document.body.clientWidth > 552 ? 24 : 16,
             color: '#942323'
           }
         },
         labelLine: {
           normal: {
-            width: 200,
-            length: 50,
+            width: document.body.clientWidth > 552 ? 200 : 130,
+            length: document.body.clientWidth > 552 ? 50 : 30,
             lineStyle: {
               color: '#942323'
             }
-          },
-          emphasis: {
-            show: true
           }
         },
-        offsetY: 300,
+        offsetY: document.body.clientWidth > 551 ? '50%' : '33.5%',
         itemStyle: {
           normal: {
             borderColor: '#942323',
@@ -54,23 +57,28 @@ export default {
       regionData: {
         columns: ['area', 'number'],
         rows: [ {area: '北部', number: 0}, {area: '中部', number: 0}, {area: '南部', number: 0}, {area: '東部', number: 0}, {area: '其他', number: 0} ]
-      },
-      percentData: {
-        columns: ['target', 'percent'],
-        rows: [ {target: '人數', percent: 0} ]
       }
     }
   },
   mounted: async function () {
-    const url = `https://script.google.com/macros/s/AKfycbyLqzX4qnEJ6SYkTctEUjH_VeNTQNjCa1wiayYbQhcJ/exec`
+    const self = this
+    if (document.documentElement.clientWidth > 552) {
+      self.chartSettings.offsetY = '50%'
+    } else {
+      self.chartSettings.offsetY = `${0.36 * document.body.querySelector('.signup_page').clientHeight / 667 * 100}%`
+    }
+    window.onresize = function () {
+      if (document.documentElement.clientWidth > 552) {
+        self.chartSettings.offsetY = '50%'
+      } else {
+        self.chartSettings.offsetY = `${0.36 * document.body.querySelector('.signup_page').clientHeight / 667 * 100}%`
+      }
+    }
+    const url = `https://script.google.com/macros/s/AKfycbwkqHDOyzl6tam7Ed-68PHNV3qIhvJ1E_yaBsLs1I3XlesemNg/exec`
     // const self = this
     try {
       // use jsonp to deal with cors
-      const result = await axios({
-        url: url,
-        adapter: jsonpAdapter,
-        callbackParamName: 'callback'
-      })
+      const result = await axios.get(url)
       const data = result.data.filter(target => target[0].length > 0)
       data.forEach(target => {
         switch (target[0]) {
@@ -144,21 +152,24 @@ export default {
 
     .signup_layout {
       display: grid;
+      grid-template-columns: 1fr;
+      grid-template-areas: "graph";
       justify-content: center;
       align-content: center;
       align-items: center;
 
       width: 100vw;
-      height: 100vh;
+      height: 65vh;
       box-sizing: border-box;
     }
 
     .signup_graph_statis_section {
+      grid-area: graph;
       justify-self: center;
       align-self: center;
 
       width: 100%;
-      height: 100%;
+      height: 65vh;
     }
 
     .signup_button {
@@ -191,8 +202,8 @@ export default {
 
     .external_circle {
       position: absolute;
-      width: 46vh;
-      height: 46vh;
+      width: 44vh;
+      height: 44vh;
 
       margin: auto;
       left: 0;
@@ -206,8 +217,8 @@ export default {
 
     .signup_bike {
       position: absolute;
-      width: 55vh;
-      height: 55vh;
+      width: 53vh;
+      height: 53vh;
 
       margin: auto;
       left: 0;
