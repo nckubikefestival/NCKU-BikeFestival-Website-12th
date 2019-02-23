@@ -109,9 +109,9 @@ export default {
     .about_facebook_qr_code {
       grid-area: facebook_qrcode;
 
-      background-image: url("../assets/about/QR_Code_nckubikefestival-facebook.svg");
+      background-image: url("../assets/about/nckubikefestival-facebook.svg");
       background-repeat: no-repeat;
-      background-size: 100% 100%;
+      background-size: 150% 150%;
       background-position: 50% 50%;
 
       width: 30vw;
@@ -143,9 +143,9 @@ export default {
 
     .about_instagram_qr_code {
       grid-area: instagram_qrcode;
-      background-image: url("../assets/about/QR_Code_nckubikefestival-instagram.svg");
+      background-image: url("../assets/about/nckubikefestival-instagram.svg");
       background-repeat: no-repeat;
-      background-size: 100% 100%;
+      background-size: 150% 150%;
       background-position: 50% 50%;
       width: 30vw;
       height: 30vw;
@@ -176,9 +176,9 @@ export default {
 
     .about_website_qr_code {
       grid-area: website_qrcode;
-      background-image: url("../assets/about/QR_Code_nckubikefestival-website.svg");
+      background-image: url("../assets/about/nckubikefestival-website.svg");
       background-repeat: no-repeat;
-      background-size: 100% 100%;
+      background-size: 150% 150%;
       background-position: 50% 50%;
       width: 30vw;
       height: 30vw;
@@ -198,7 +198,7 @@ export default {
       background-color: transparent;
       background-image: url("../assets/exit.svg");
       background-repeat: no-repeat;
-      background-size: 100% 100%;
+      background-size: 150% 150%;
       background-position: 50% 50%;
 
       outline: none;
@@ -305,9 +305,9 @@ export default {
     .about_facebook_qr_code {
       grid-area: facebook_qrcode;
 
-      background-image: url("../assets/about/QR_Code_nckubikefestival-facebook.svg");
+      background-image: url("../assets/about/nckubikefestival-facebook.svg");
       background-repeat: no-repeat;
-      background-size: 100% 100%;
+      background-size: 150% 150%;
       background-position: 50% 50%;
 
       width: 20vw;
@@ -335,9 +335,9 @@ export default {
 
     .about_instagram_qr_code {
       grid-area: instagram_qrcode;
-      background-image: url("../assets/about/QR_Code_nckubikefestival-instagram.svg");
+      background-image: url("../assets/about/nckubikefestival-instagram.svg");
       background-repeat: no-repeat;
-      background-size: 100% 100%;
+      background-size: 150% 150%;
       background-position: 50% 50%;
       width: 20vw;
       height: 20vw;
@@ -368,9 +368,9 @@ export default {
 
     .about_website_qr_code {
       grid-area: website_qrcode;
-      background-image: url("../assets/about/QR_Code_nckubikefestival-website.svg");
+      background-image: url("../assets/about/nckubikefestival-website.svg");
       background-repeat: no-repeat;
-      background-size: 100% 100%;
+      background-size: 150% 150%;
       background-position: 50% 50%;
       width: 20vw;
       height: 20vw;
@@ -390,7 +390,7 @@ export default {
       background-color: transparent;
       background-image: url("../assets/exit.svg");
       background-repeat: no-repeat;
-      background-size: 100% 100%;
+      background-size: 150% 150%;
       background-position: 50% 50%;
 
       outline: none;

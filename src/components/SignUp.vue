@@ -25,7 +25,7 @@ export default {
           formatter: '{b} {d}%'
         },
         series: {
-          radius: '70%'
+          radius: '65%'
         }
       },
       chartSettings: {
@@ -202,8 +202,8 @@ export default {
 
     .external_circle {
       position: absolute;
-      width: 44vh;
-      height: 44vh;
+      width: 45vh;
+      height: 45vh;
 
       margin: auto;
       left: 0;
@@ -217,8 +217,8 @@ export default {
 
     .signup_bike {
       position: absolute;
-      width: 53vh;
-      height: 53vh;
+      width: 55vh;
+      height: 55vh;
 
       margin: auto;
       left: 0;
@@ -380,8 +380,8 @@ export default {
 
     .external_circle {
       position: absolute;
-      width: 46vh;
-      height: 46vh;
+      width: 45vh;
+      height: 45vh;
 
       margin: auto;
       left: 0;

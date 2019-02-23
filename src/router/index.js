@@ -40,11 +40,7 @@ export default new Router({
     {
       path: '/activity',
       name: 'Activity',
-      component: Activity,
-      beforeEnter: function (to, from, next) {
-        alert('敬請期待')
-        next('/')
-      }
+      component: Activity
     },
     {
       path: '/sign-up',
